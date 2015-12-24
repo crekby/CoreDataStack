@@ -10,6 +10,7 @@
 		3F91C12C1C2C289E000801F1 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F91C12B1C2C289E000801F1 /* CoreDataStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F91C1331C2C289E000801F1 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1281C2C289E000801F1 /* CoreDataStack.framework */; };
 		3F91C1381C2C289E000801F1 /* CoreDataStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */; };
+		3F91C1431C2C28DF000801F1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1421C2C28DF000801F1 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		3F91C1321C2C289E000801F1 /* CoreDataStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackTests.m; sourceTree = "<group>"; };
 		3F91C1391C2C289E000801F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F91C1421C2C28DF000801F1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F91C1431C2C28DF000801F1 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +56,7 @@
 		3F91C11E1C2C289E000801F1 = {
 			isa = PBXGroup;
 			children = (
+				3F91C1421C2C28DF000801F1 /* CoreData.framework */,
 				3F91C12A1C2C289E000801F1 /* CoreDataStack */,
 				3F91C1361C2C289E000801F1 /* CoreDataStackTests */,
 				3F91C1291C2C289E000801F1 /* Products */,
@@ -252,7 +256,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -293,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
