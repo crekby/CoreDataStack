@@ -56,7 +56,6 @@
 		3F91C11E1C2C289E000801F1 = {
 			isa = PBXGroup;
 			children = (
-				3F91C1421C2C28DF000801F1 /* CoreData.framework */,
 				3F91C12A1C2C289E000801F1 /* CoreDataStack */,
 				3F91C1361C2C289E000801F1 /* CoreDataStackTests */,
 				3F91C1291C2C289E000801F1 /* Products */,
@@ -75,6 +74,7 @@
 		3F91C12A1C2C289E000801F1 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
+				3F91C1441C2C2A4F000801F1 /* Frameworks */,
 				3F91C12B1C2C289E000801F1 /* CoreDataStack.h */,
 				3F91C12D1C2C289E000801F1 /* Info.plist */,
 			);
@@ -88,6 +88,14 @@
 				3F91C1391C2C289E000801F1 /* Info.plist */,
 			);
 			path = CoreDataStackTests;
+			sourceTree = "<group>";
+		};
+		3F91C1441C2C2A4F000801F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F91C1421C2C28DF000801F1 /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +154,7 @@
 		3F91C11F1C2C289E000801F1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = IT;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Aliaksandr Skulin";
 				TargetAttributes = {
@@ -378,6 +387,7 @@
 				3F91C13E1C2C289E000801F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F91C13F1C2C289E000801F1 /* Build configuration list for PBXNativeTarget "CoreDataStackTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +396,7 @@
 				3F91C1411C2C289E000801F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
