@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) NSManagedObjectModel *model;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *backgroundManagedObjectContext;
 @property (nonatomic, strong) NSString *storeType;
 @property (nonatomic, strong) NSURL *storeURL;
 
@@ -34,7 +36,7 @@
         _storeType = storeType;
         _storeURL = [[ITDatabaseManager applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
         NSAssert([self initialisePersistenceStore], @"Unable to initialise persistence store");
-        
+        NSAssert([self createManagedObjectContexts], @"Unable to create Managed Object Contexts");
     }
     return self;
 }
@@ -86,6 +88,16 @@
     return compatible;
 }
 
+#pragma mark - Notifications
+
+- (void)mainContextDidSave:(NSNotification *)notification
+{
+}
+
+- (void)backgroundContextDidSave:(NSNotification *)notification
+{
+}
+
 #pragma mark - Private Methods
 
 - (BOOL)initialisePersistenceStore
@@ -116,6 +128,34 @@
     if (error) {
         return NO;
     }
+    return YES;
+}
+
+- (BOOL)createManagedObjectContexts
+{
+    self.backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [self.backgroundManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    [self.backgroundManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    [self.backgroundManagedObjectContext setName:@"ITDatabaseManager.BackgroundQueue"];
+    
+    self.mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [self.mainManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
+    [self.mainManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    [self.mainManagedObjectContext setName:@"ITDatabaseManager.MainQueue"];
+    
+    if (!self.mainManagedObjectContext || !self.backgroundManagedObjectContext) {
+        return NO;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(mainContextDidSave:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:self.mainManagedObjectContext];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(backgroundContextDidSave:)
+                                                 name:NSManagedObjectContextDidSaveNotification
+                                               object:self.backgroundManagedObjectContext];
+    
     return YES;
 }
 
