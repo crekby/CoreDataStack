@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F91C12C1C2C289E000801F1 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F91C12B1C2C289E000801F1 /* CoreDataStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F91C1331C2C289E000801F1 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1281C2C289E000801F1 /* CoreDataStack.framework */; };
 		3F91C1381C2C289E000801F1 /* CoreDataStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */; };
 		3F91C1431C2C28DF000801F1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1421C2C28DF000801F1 /* CoreData.framework */; };
+		3F96EE421C2C32B6002442B3 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE3F1C2C32B6002442B3 /* CoreDataStack.h */; };
+		3F96EE431C2C32B6002442B3 /* ITDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE401C2C32B6002442B3 /* ITDatabaseManager.h */; };
+		3F96EE441C2C32B6002442B3 /* ITDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE411C2C32B6002442B3 /* ITDatabaseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,12 +27,14 @@
 
 /* Begin PBXFileReference section */
 		3F91C1281C2C289E000801F1 /* CoreDataStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F91C12B1C2C289E000801F1 /* CoreDataStack.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		3F91C12D1C2C289E000801F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F91C1321C2C289E000801F1 /* CoreDataStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackTests.m; sourceTree = "<group>"; };
 		3F91C1391C2C289E000801F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F91C1421C2C28DF000801F1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3F96EE3F1C2C32B6002442B3 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataStack.h; path = Classes/CoreDataStack.h; sourceTree = "<group>"; };
+		3F96EE401C2C32B6002442B3 /* ITDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITDatabaseManager.h; path = Classes/ITDatabaseManager.h; sourceTree = "<group>"; };
+		3F96EE411C2C32B6002442B3 /* ITDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITDatabaseManager.m; path = Classes/ITDatabaseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +78,8 @@
 		3F91C12A1C2C289E000801F1 /* CoreDataStack */ = {
 			isa = PBXGroup;
 			children = (
+				3F96EE3E1C2C3282002442B3 /* Classes */,
 				3F91C1441C2C2A4F000801F1 /* Frameworks */,
-				3F91C12B1C2C289E000801F1 /* CoreDataStack.h */,
 				3F91C12D1C2C289E000801F1 /* Info.plist */,
 			);
 			path = CoreDataStack;
@@ -98,6 +102,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F96EE3E1C2C3282002442B3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3F96EE3F1C2C32B6002442B3 /* CoreDataStack.h */,
+				3F96EE401C2C32B6002442B3 /* ITDatabaseManager.h */,
+				3F96EE411C2C32B6002442B3 /* ITDatabaseManager.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -105,7 +119,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F91C12C1C2C289E000801F1 /* CoreDataStack.h in Headers */,
+				3F96EE431C2C32B6002442B3 /* ITDatabaseManager.h in Headers */,
+				3F96EE421C2C32B6002442B3 /* CoreDataStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F96EE441C2C32B6002442B3 /* ITDatabaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
