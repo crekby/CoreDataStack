@@ -92,10 +92,23 @@
 
 - (void)mainContextDidSave:(NSNotification *)notification
 {
+    [self.backgroundManagedObjectContext performBlock:^{
+        [self.backgroundManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+    }];
 }
 
 - (void)backgroundContextDidSave:(NSNotification *)notification
 {
+    [self.mainManagedObjectContext performBlock:^{
+        NSArray* updated = [notification.userInfo valueForKey:NSUpdatedObjectsKey];
+        // Fault all objects that will be updated.
+        for (NSManagedObject* obj in updated) {
+            NSManagedObject* mainThreadObject = [self.mainManagedObjectContext existingObjectWithID:obj.objectID error:nil];
+            [mainThreadObject willAccessValueForKey:nil];
+        }
+        
+        [self.mainManagedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+    }];
 }
 
 #pragma mark - Private Methods
