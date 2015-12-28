@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface ITDatabaseManager : NSObject
 
@@ -14,5 +15,8 @@
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType NS_DESIGNATED_INITIALIZER;
+
+- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *))mainThreadOperation;
+- (void)executeBackgroundOperation:(void (^)(NSManagedObjectContext *))backgroundOperation;
 
 @end

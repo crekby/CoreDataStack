@@ -53,6 +53,25 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+#pragma mark - Public
+
+- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *))mainThreadOperation
+{
+    NSAssert(mainThreadOperation, @"No Main Thread operation to perform");
+    
+    [self.mainManagedObjectContext performBlockAndWait:^{
+        mainThreadOperation(self.mainManagedObjectContext);
+    }];
+}
+
+- (void)executeBackgroundOperation:(void (^)(NSManagedObjectContext *))operation
+{
+    NSAssert(operation, @"No Background operation to perform");
+    [self.backgroundManagedObjectContext performBlock:^{
+        operation(self.backgroundManagedObjectContext);
+    }];
+}
+
 #pragma mark - Helpers
 
 - (BOOL)persistentStoreExistsAtURL:(NSURL *)url
