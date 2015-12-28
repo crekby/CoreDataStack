@@ -174,7 +174,6 @@
     self.mainManagedObjectContext = [[ITManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [self.mainManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     [self.mainManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
-    [self.mainManagedObjectContext setForbidChanges:YES];
     [self.mainManagedObjectContext setName:@"ITDatabaseManager.MainQueue"];
     
     if (!self.mainManagedObjectContext || !self.backgroundManagedObjectContext) {

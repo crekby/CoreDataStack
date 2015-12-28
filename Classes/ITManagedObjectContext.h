@@ -10,6 +10,4 @@
 
 @interface ITManagedObjectContext : NSManagedObjectContext
 
-@property (nonatomic, assign) BOOL forbidChanges;
-
 @end

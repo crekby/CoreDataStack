@@ -30,7 +30,7 @@
 
 - (void)assertIfNeeded
 {
-    NSAssert(!self.forbidChanges, @"Changes in main context is not allowed. Please use background context.");
+    NSAssert(self.concurrencyType != NSMainQueueConcurrencyType, @"Changes in main context is not allowed. Please use background context.");
 }
 
 @end
