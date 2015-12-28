@@ -7,14 +7,15 @@
 //
 
 #import "ITDatabaseManager.h"
+#import "ITManagedObjectContext.h"
 #import <CoreData/CoreData.h>
 
 @interface ITDatabaseManager()
 
 @property (nonatomic, strong) NSManagedObjectModel *model;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) NSManagedObjectContext *mainManagedObjectContext;
-@property (nonatomic, strong) NSManagedObjectContext *backgroundManagedObjectContext;
+@property (nonatomic, strong) ITManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong) ITManagedObjectContext *backgroundManagedObjectContext;
 @property (nonatomic, strong) NSString *storeType;
 @property (nonatomic, strong) NSURL *storeURL;
 
@@ -165,14 +166,15 @@
 
 - (BOOL)createManagedObjectContexts
 {
-    self.backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    self.backgroundManagedObjectContext = [[ITManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [self.backgroundManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     [self.backgroundManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
     [self.backgroundManagedObjectContext setName:@"ITDatabaseManager.BackgroundQueue"];
     
-    self.mainManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    self.mainManagedObjectContext = [[ITManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [self.mainManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
     [self.mainManagedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
+    [self.mainManagedObjectContext setForbidChanges:YES];
     [self.mainManagedObjectContext setName:@"ITDatabaseManager.MainQueue"];
     
     if (!self.mainManagedObjectContext || !self.backgroundManagedObjectContext) {
