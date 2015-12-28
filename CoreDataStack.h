@@ -7,6 +7,5 @@
 //
 
 #import "ITDatabaseManager.h"
-#import "NSManagedObject+ChangeAssert.h"
 
 
