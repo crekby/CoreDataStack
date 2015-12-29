@@ -8,6 +8,10 @@
 
 #import <CoreData/CoreData.h>
 
+/**
+ @warning DO NOT SUBCLASS FROM THIS CLASS. IT'S ONLY FOR FORBBIDING CHANGES IN MAIN THREAD CONTEXT.
+ */
+
 @interface ITManagedObjectContext : NSManagedObjectContext
 
 @end
