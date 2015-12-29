@@ -140,12 +140,15 @@
 - (void)swizzleWillChangeValueForKeyInModelEntitiesClasses
 {
     for (NSEntityDescription *description in self.model.entities) {
-        Class NSManagedObjectClass = NSClassFromString(description.managedObjectClassName);
+        Class entityClass = NSClassFromString(description.managedObjectClassName);
+        if (!entityClass) {
+            continue;
+        }
         SEL sel = @selector(willChangeValueForKey:);
-        Method origMethod = class_getInstanceMethod(NSManagedObjectClass, sel);
+        Method origMethod = class_getInstanceMethod(entityClass, sel);
         Method newMethod = class_getInstanceMethod(ITManagedObject.class, sel);
-        if(class_addMethod(NSManagedObjectClass, sel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-            class_replaceMethod(NSManagedObjectClass, sel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
+        if(class_addMethod(entityClass, sel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+            class_replaceMethod(entityClass, sel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
         } else {
             method_exchangeImplementations(origMethod, newMethod);
         }
