@@ -16,6 +16,8 @@
 		3F96EE4E1C2C3AF9002442B3 /* ITDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */; };
 		3F96EE621C317025002442B3 /* ITManagedObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE601C317025002442B3 /* ITManagedObjectContext.h */; };
 		3F96EE631C317025002442B3 /* ITManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE611C317025002442B3 /* ITManagedObjectContext.m */; };
+		3F96EE661C318D2A002442B3 /* ITManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE641C318D2A002442B3 /* ITManagedObject.h */; };
+		3F96EE671C318D2A002442B3 /* ITManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE651C318D2A002442B3 /* ITManagedObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITDatabaseManager.m; path = Classes/ITDatabaseManager.m; sourceTree = SOURCE_ROOT; };
 		3F96EE601C317025002442B3 /* ITManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITManagedObjectContext.h; path = Classes/ITManagedObjectContext.h; sourceTree = SOURCE_ROOT; };
 		3F96EE611C317025002442B3 /* ITManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITManagedObjectContext.m; path = Classes/ITManagedObjectContext.m; sourceTree = SOURCE_ROOT; };
+		3F96EE641C318D2A002442B3 /* ITManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITManagedObject.h; path = Classes/ITManagedObject.h; sourceTree = SOURCE_ROOT; };
+		3F96EE651C318D2A002442B3 /* ITManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITManagedObject.m; path = Classes/ITManagedObject.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */,
 				3F96EE601C317025002442B3 /* ITManagedObjectContext.h */,
 				3F96EE611C317025002442B3 /* ITManagedObjectContext.m */,
+				3F96EE641C318D2A002442B3 /* ITManagedObject.h */,
+				3F96EE651C318D2A002442B3 /* ITManagedObject.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -126,6 +132,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F96EE661C318D2A002442B3 /* ITManagedObject.h in Headers */,
 				3F96EE621C317025002442B3 /* ITManagedObjectContext.h in Headers */,
 				3F96EE4D1C2C3AF9002442B3 /* ITDatabaseManager.h in Headers */,
 				3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */,
@@ -230,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F96EE671C318D2A002442B3 /* ITManagedObject.m in Sources */,
 				3F96EE4E1C2C3AF9002442B3 /* ITDatabaseManager.m in Sources */,
 				3F96EE631C317025002442B3 /* ITManagedObjectContext.m in Sources */,
 			);

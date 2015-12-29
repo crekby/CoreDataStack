@@ -8,7 +8,10 @@
 
 #import "ITDatabaseManager.h"
 #import "ITManagedObjectContext.h"
+#import "ITManagedObject.h"
 #import <CoreData/CoreData.h>
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 @interface ITDatabaseManager()
 
@@ -38,6 +41,7 @@
         _storeURL = [[ITDatabaseManager applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
         NSAssert([self initialisePersistenceStore], @"Unable to initialise persistence store");
         NSAssert([self createManagedObjectContexts], @"Unable to create Managed Object Contexts");
+        [self swizzleWillChangeValueForKeyInModelEntitiesClasses];
     }
     return self;
 }
@@ -132,6 +136,21 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)swizzleWillChangeValueForKeyInModelEntitiesClasses
+{
+    for (NSEntityDescription *description in self.model.entities) {
+        Class NSManagedObjectClass = NSClassFromString(description.managedObjectClassName);
+        SEL sel = @selector(willChangeValueForKey:);
+        Method origMethod = class_getInstanceMethod(NSManagedObjectClass, sel);
+        Method newMethod = class_getInstanceMethod(ITManagedObject.class, sel);
+        if(class_addMethod(NSManagedObjectClass, sel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
+            class_replaceMethod(NSManagedObjectClass, sel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
+        } else {
+            method_exchangeImplementations(origMethod, newMethod);
+        }
+    }
+}
 
 - (BOOL)initialisePersistenceStore
 {
