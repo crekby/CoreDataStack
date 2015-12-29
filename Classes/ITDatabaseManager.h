@@ -9,7 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class ITManagedObjectContext;
+
 @interface ITDatabaseManager : NSObject
+
+@property (nonatomic, strong, readonly) ITManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong, readonly) ITManagedObjectContext *backgroundManagedObjectContext;
 
 + (NSURL *)applicationDocumentsDirectory;
 
