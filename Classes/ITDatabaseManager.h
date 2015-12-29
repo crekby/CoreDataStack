@@ -48,6 +48,11 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  */
 - (void)executeBackgroundOperation:(void (^)(NSManagedObjectContext *context))backgroundOperation;
 
+/**
+ Executes given blocks in background and in main context respectively. Background block should return fetched data or nil.
+ @param backgroundOperation Block for background context execution, use it to fetching and changing your data. return your results from this block.
+ @param mainThreadOperation Block for mainThread context execution, result from backgroun operation sending to this block from main context.
+ */
 - (void)executeBackgroundOperation:(BackroundOperationWithResultBlock)backgroundOperation
                mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
 
