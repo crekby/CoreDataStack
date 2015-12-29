@@ -11,12 +11,38 @@
 
 @class ITManagedObjectContext;
 
-typedef id(^BackroundOperationWithResultBlock)(NSManagedObjectContext *context);
+/**
+ Block for executing from background context.
+ @param context background context.
+ @return fetch result array or nil.
+ */
+typedef NSArray*(^BackroundOperationWithResultBlock)(NSManagedObjectContext *context);
+
+/**
+ Block for executing from main context.
+ @param error error which appear during background context save, or during main context result fetching.
+ @param result result array from background context, suitable for using in main thread.
+ */
 typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *result);
 
+
+/**
+ Database manager class for managing core data operations for 2 NSManagedObjectContexts, one is for main thread, and other is for background.
+ You only allowed to make changes to your data in background context.
+ Main context is only for fetching data and use it for UI related manipulation.
+ Both contexts have same persistence store coordinator.
+ And after saving changes in background context, they are merged to main context.
+ */
 @interface ITDatabaseManager : NSObject
 
+/**
+ NSManagedObjectContext for main thread.
+ */
 @property (nonatomic, strong, readonly) ITManagedObjectContext *mainManagedObjectContext;
+
+/**
+ NSManagedObjectContext for background thread.
+ */
 @property (nonatomic, strong, readonly) ITManagedObjectContext *backgroundManagedObjectContext;
 
 /**
@@ -24,6 +50,8 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  */
 + (NSURL *)applicationDocumentsDirectory;
 
+/**
+ */
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
