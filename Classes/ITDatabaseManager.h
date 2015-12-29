@@ -11,6 +11,9 @@
 
 @class ITManagedObjectContext;
 
+typedef id(^BackroundOperationWithResultBlock)(NSManagedObjectContext *context);
+typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *result);
+
 @interface ITDatabaseManager : NSObject
 
 @property (nonatomic, strong, readonly) ITManagedObjectContext *mainManagedObjectContext;
@@ -36,13 +39,16 @@
  @warning DO NOT USE MAIN THREAD CONTEXT FOR CHANGES, USE IT ONLY FOR FETCHING.
  @param backgroundOperation Block for execution.
  */
-- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *))mainThreadOperation;
+- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
 
 /**
  Executes given block in background.
  @warning USE BACKGROUND CONTEXT FOR MAKING CHANGES IN YOUR MODEL, NOT MAIN CONTEXT.
  @param backgroundOperation Block for execution.
  */
-- (void)executeBackgroundOperation:(void (^)(NSManagedObjectContext *))backgroundOperation;
+- (void)executeBackgroundOperation:(void (^)(NSManagedObjectContext *context))backgroundOperation;
+
+- (void)executeBackgroundOperation:(BackroundOperationWithResultBlock)backgroundOperation
+               mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
 
 @end

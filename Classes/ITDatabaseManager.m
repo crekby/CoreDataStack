@@ -77,6 +77,58 @@
     }];
 }
 
+- (void)executeBackgroundOperation:(BackroundOperationWithResultBlock)backgroundOperation mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation
+{
+    NSAssert(backgroundOperation, @"No Background operation to perform");
+    NSAssert(mainThreadOperation, @"No Main Thread operation to perform");
+    
+    void (^mainThreadOperationBlock) (NSError *, NSArray *) = ^(NSError *error, NSArray *array) {
+        if (mainThreadOperation) {
+            if ([NSThread isMainThread]) {
+                mainThreadOperation(error, array);
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    mainThreadOperation(error, array);
+                });
+            }
+        }
+    };
+    
+    NSArray __block *result;
+    
+    [self executeBackgroundOperation:^(NSManagedObjectContext *backgroundContext) {
+        
+        result = backgroundOperation(self.mainManagedObjectContext);
+        
+        NSError *error;
+        
+        [backgroundContext save:&error];
+        
+        if (error) {
+            mainThreadOperationBlock(error, nil);
+            return;
+        } else {
+            if (result.count > 0 && mainThreadOperation) {
+                NSArray *objectIDs = [result valueForKey:@"objectID"];
+                [self executeMainThreadOperation:^(NSManagedObjectContext *mainThreadContext) {
+                    
+                    // Fetch Main Thread Objects
+                    NSString *entity = ((NSManagedObject*)[result firstObject]).entity.name;
+                    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entity];
+                    request.predicate = [NSPredicate predicateWithFormat:@"SELF IN %@",objectIDs];
+                    request.includesSubentities = NO;
+                    NSError *error;
+                    NSArray *result = [mainThreadContext executeFetchRequest:request error:&error];
+                    
+                    mainThreadOperationBlock(error, result);
+                }];
+            } else {
+                mainThreadOperationBlock(nil, nil);
+            }
+        }
+    }];
+}
+
 #pragma mark - Helpers
 
 - (BOOL)persistentStoreExistsAtURL:(NSURL *)url
