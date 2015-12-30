@@ -13,22 +13,25 @@
 
 @end
 
+static NSString *kITTestEntityName = @"TestEntity";
+static NSString *kITChangesExceptionMessage = @"Changes in main context is not allowed. Please use background context.";
+
 @implementation MainContextExeptionsTests
 
 - (void)testThatInsertObjectInMainContextWillTrowExeption
 {
-    XCTAssertThrowsSpecific([NSEntityDescription insertNewObjectForEntityForName:@"TestEntity" inManagedObjectContext:self.databaseManager.mainManagedObjectContext], NSException, @"Changes in main context is not allowed. Please use background context.");
+    XCTAssertThrowsSpecific([NSEntityDescription insertNewObjectForEntityForName:kITTestEntityName inManagedObjectContext:self.databaseManager.mainManagedObjectContext], NSException, @"%@", kITChangesExceptionMessage);
 }
 
 - (void)testThatDeletingObjectFromMainContextWillTrowExeption
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait expectation"];
     [self.databaseManager executeBackgroundOperation:^NSArray *(NSManagedObjectContext *context) {
-        TestEntity *object = [NSEntityDescription insertNewObjectForEntityForName:@"TestEntity" inManagedObjectContext:self.databaseManager.backgroundManagedObjectContext];
+        TestEntity *object = [NSEntityDescription insertNewObjectForEntityForName:kITTestEntityName inManagedObjectContext:self.databaseManager.backgroundManagedObjectContext];
         return @[object];
     } mainThreadOperation:^(NSError *error, NSArray *result) {
         TestEntity *object = result.firstObject;
-        XCTAssertThrowsSpecific([self.databaseManager.mainManagedObjectContext deleteObject:object], NSException, @"Changes in main context is not allowed. Please use background context.");
+        XCTAssertThrowsSpecific([self.databaseManager.mainManagedObjectContext deleteObject:object], NSException, @"%@", kITChangesExceptionMessage);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:5 handler:nil];
@@ -38,14 +41,21 @@
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"Wait expectation"];
     [self.databaseManager executeBackgroundOperation:^NSArray *(NSManagedObjectContext *context) {
-        TestEntity *object = [NSEntityDescription insertNewObjectForEntityForName:@"TestEntity" inManagedObjectContext:self.databaseManager.backgroundManagedObjectContext];
+        TestEntity *object = [NSEntityDescription insertNewObjectForEntityForName:kITTestEntityName inManagedObjectContext:self.databaseManager.backgroundManagedObjectContext];
         return @[object];
     } mainThreadOperation:^(NSError *error, NSArray *result) {
         TestEntity *object = result.firstObject;
-        XCTAssertThrowsSpecific([object setValue:@"1" forKey:@"testProperty"], NSException, @"Changes in main context is not allowed. Please use background context.");
+        XCTAssertThrowsSpecific([object setValue:@"1" forKey:@"testProperty"], NSException, @"%@", kITChangesExceptionMessage);
         [expectation fulfill];
     }];
     [self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void)testThatMainContextSaveThrowsException
+{
+    [self.databaseManager executeMainThreadOperation:^(NSManagedObjectContext *context) {
+        XCTAssertThrowsSpecific([context save:nil], NSException, @"%@", kITChangesExceptionMessage);
+    }];
 }
 
 @end
