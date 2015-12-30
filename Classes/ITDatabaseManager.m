@@ -17,8 +17,8 @@
 
 @property (nonatomic, strong) NSManagedObjectModel *model;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) ITManagedObjectContext *mainManagedObjectContext;
-@property (nonatomic, strong) ITManagedObjectContext *backgroundManagedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *backgroundManagedObjectContext;
 @property (nonatomic, strong) NSString *storeType;
 @property (nonatomic, strong) NSURL *storeURL;
 
@@ -199,9 +199,7 @@
         SEL sel = @selector(willChangeValueForKey:);
         Method origMethod = class_getInstanceMethod(entityClass, sel);
         Method newMethod = class_getInstanceMethod(ITManagedObject.class, sel);
-        if(class_addMethod(entityClass, sel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-            class_replaceMethod(entityClass, sel, method_getImplementation(origMethod), method_getTypeEncoding(origMethod));
-        } else {
+        if(!class_addMethod(entityClass, sel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
             method_exchangeImplementations(origMethod, newMethod);
         }
     }

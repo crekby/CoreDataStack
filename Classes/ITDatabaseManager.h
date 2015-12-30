@@ -38,12 +38,12 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 /**
  NSManagedObjectContext for main thread.
  */
-@property (nonatomic, strong, readonly) ITManagedObjectContext *mainManagedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *mainManagedObjectContext;
 
 /**
  NSManagedObjectContext for background thread.
  */
-@property (nonatomic, strong, readonly) ITManagedObjectContext *backgroundManagedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *backgroundManagedObjectContext;
 
 /**
  URL to Documents directory in application sandbox.
