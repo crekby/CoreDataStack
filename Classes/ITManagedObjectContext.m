@@ -12,25 +12,28 @@
 
 - (void)insertObject:(NSManagedObject *)object
 {
-    [self assertIfNeeded];
+    [self throwExceptionIfNeeded];
     [super insertObject:object];
 }
 
 - (void)deleteObject:(NSManagedObject *)object
 {
-    [self assertIfNeeded];
+    [self throwExceptionIfNeeded];
     [super deleteObject:object];
 }
 
 - (BOOL)save:(NSError * _Nullable __autoreleasing *)error
 {
-    [self assertIfNeeded];
+    [self throwExceptionIfNeeded];
     return [super save:error];
 }
 
-- (void)assertIfNeeded
+- (void)throwExceptionIfNeeded
 {
-    NSAssert(self.concurrencyType != NSMainQueueConcurrencyType, @"Changes in main context is not allowed. Please use background context.");
+    if (self.concurrencyType != NSMainQueueConcurrencyType) {
+        return;
+    }
+    [NSException raise:@"Error" format:@"Changes in main context is not allowed. Please use background context."];
 }
 
 @end

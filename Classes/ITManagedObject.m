@@ -12,7 +12,9 @@
 
 - (void)willChangeValueForKey:(NSString *)key
 {
-    NSAssert(self.managedObjectContext.concurrencyType != NSMainQueueConcurrencyType, @"Changes in main context is not allowed. Please use background context.");
+    if (self.managedObjectContext.concurrencyType == NSMainQueueConcurrencyType) {
+        [NSException raise:@"Error" format:@"Changes in main context is not allowed. Please use background context."];
+    }
     [super willChangeValueForKey:key];
 }
 
