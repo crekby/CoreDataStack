@@ -27,7 +27,7 @@ static NSString *kITTestEntityName = @"TestEntity";
     } mainThreadOperation:^(NSError *error, NSArray *result) {
         XCTAssertNil(error);
         TestEntity *object = result.firstObject;
-        XCTAssertNil(object);
+        XCTAssertNotNil(object);
         XCTAssert(object.managedObjectContext.concurrencyType == NSMainQueueConcurrencyType, @"returned object is not in main context");
         [expectation fulfill];
     }];
