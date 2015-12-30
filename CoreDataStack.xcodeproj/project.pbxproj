@@ -23,6 +23,8 @@
 		3F96EE781C33F11E002442B3 /* MainContextExeptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */; };
 		3F96EE7B1C33F1AE002442B3 /* CoreDataStackTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */; };
 		3F96EE7E1C33FEB4002442B3 /* BackgroundContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE7D1C33FEB4002442B3 /* BackgroundContextTests.m */; };
+		3F96EE821C34021E002442B3 /* NSManagedObject+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE801C34021E002442B3 /* NSManagedObject+Additions.h */; };
+		3F96EE831C34021E002442B3 /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		3F96EE791C33F1AE002442B3 /* CoreDataStackTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStackTestCase.h; sourceTree = "<group>"; };
 		3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackTestCase.m; sourceTree = "<group>"; };
 		3F96EE7D1C33FEB4002442B3 /* BackgroundContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundContextTests.m; sourceTree = "<group>"; };
+		3F96EE801C34021E002442B3 /* NSManagedObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Additions.h"; path = "Classes/Categories/NSManagedObject+Additions.h"; sourceTree = SOURCE_ROOT; };
+		3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Additions.m"; path = "Classes/Categories/NSManagedObject+Additions.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 		3F96EE3E1C2C3282002442B3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3F96EE7F1C3401E9002442B3 /* Categories */,
 				3F96EE4B1C2C3AF9002442B3 /* ITDatabaseManager.h */,
 				3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */,
 				3F96EE601C317025002442B3 /* ITManagedObjectContext.h */,
@@ -162,6 +167,15 @@
 			name = BaseClasses;
 			sourceTree = "<group>";
 		};
+		3F96EE7F1C3401E9002442B3 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3F96EE801C34021E002442B3 /* NSManagedObject+Additions.h */,
+				3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -171,6 +185,7 @@
 			files = (
 				3F96EE661C318D2A002442B3 /* ITManagedObject.h in Headers */,
 				3F96EE621C317025002442B3 /* ITManagedObjectContext.h in Headers */,
+				3F96EE821C34021E002442B3 /* NSManagedObject+Additions.h in Headers */,
 				3F96EE4D1C2C3AF9002442B3 /* ITDatabaseManager.h in Headers */,
 				3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */,
 			);
@@ -275,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F96EE671C318D2A002442B3 /* ITManagedObject.m in Sources */,
+				3F96EE831C34021E002442B3 /* NSManagedObject+Additions.m in Sources */,
 				3F96EE4E1C2C3AF9002442B3 /* ITDatabaseManager.m in Sources */,
 				3F96EE631C317025002442B3 /* ITManagedObjectContext.m in Sources */,
 			);

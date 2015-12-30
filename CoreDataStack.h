@@ -7,5 +7,5 @@
 //
 
 #import "ITDatabaseManager.h"
-
+#import "NSManagedObject+Additions.h"
 

@@ -22,7 +22,7 @@ static NSString *kITTestEntityName = @"TestEntity";
 {
     XCTestExpectation* expectation = [self expectationWithDescription:@"Wait expectation"];
     [self.databaseManager executeBackgroundOperation:^NSArray *(NSManagedObjectContext *context) {
-        TestEntity *object = [NSEntityDescription insertNewObjectForEntityForName:kITTestEntityName inManagedObjectContext:self.databaseManager.backgroundManagedObjectContext];
+        TestEntity *object = [TestEntity insertObjectInManagedObjectContext:context];
         return @[object];
     } mainThreadOperation:^(NSError *error, NSArray *result) {
         XCTAssertNil(error);

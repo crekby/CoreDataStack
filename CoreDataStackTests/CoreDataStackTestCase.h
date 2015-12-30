@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ITDatabaseManager.h"
+#import "CoreDataStack.h"
 #import <CoreData/CoreData.h>
 
 @class ITDatabaseManager;
