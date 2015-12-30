@@ -129,6 +129,33 @@
     }];
 }
 
+#pragma mark FetchResultController
+
+- (NSFetchedResultsController *)controllerWithRequest:(NSFetchRequest *)request
+                                   sectionKeyPathName:(NSString *)keyPath
+                                             delegate:(id<NSFetchedResultsControllerDelegate>)delegate
+{
+    NSAssert([request.sortDescriptors count] > 0, @"NSFetchedResultController requres sort descriptors.");
+    NSAssert(request.resultType == NSManagedObjectResultType, @"NSFetchedResultController requires NSManagedObject Result Type");
+    
+    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                                 managedObjectContext:self.mainManagedObjectContext
+                                                                                   sectionNameKeyPath:keyPath
+                                                                                            cacheName:nil];
+    controller.delegate = delegate;
+    NSError *error;
+    if (![controller performFetch:&error]) {
+        return nil;
+    }
+    return controller;
+}
+
+- (NSFetchedResultsController*)controllerWithRequest:(NSFetchRequest *)request
+                                         andDelegate:(id <NSFetchedResultsControllerDelegate>)delegate
+{
+    return [self controllerWithRequest:request sectionKeyPathName:nil delegate:delegate];
+}
+
 #pragma mark - Helpers
 
 - (BOOL)persistentStoreExistsAtURL:(NSURL *)url
