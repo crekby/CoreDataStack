@@ -1,35 +1,19 @@
 //
-//  CoreDataStackTests.m
-//  CoreDataStackTests
+//  MainContextExeptionsTests.m
+//  CoreDataStack
 //
-//  Created by Aliaksandr Skulin on 12/24/15.
+//  Created by Aliaksandr Skulin on 12/30/15.
 //  Copyright © 2015 Aliaksandr Skulin. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
-#import <CoreData/CoreData.h>
-#import "ITDatabaseManager.h"
+#import "CoreDataStackTestCase.h"
 #import "TestEntity.h"
 
-@interface CoreDataStackTests : XCTestCase
-
-@property (nonatomic, strong) ITDatabaseManager *databaseManager;
+@interface MainContextExeptionsTests : CoreDataStackTestCase
 
 @end
 
-@implementation CoreDataStackTests
-
-- (void)setUp {
-    [super setUp];
-    NSString *storeName = NSStringFromSelector([self.invocation selector]);
-    NSURL *modelURL = [[NSBundle bundleForClass:self.class] URLForResource:@"TestModel" withExtension:@"momd"];
-    self.databaseManager = [[ITDatabaseManager alloc] initWithModel:[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] storeName:storeName storeType:NSInMemoryStoreType];
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
+@implementation MainContextExeptionsTests
 
 - (void)testThatInsertObjectInMainContextWillTrowExeption
 {

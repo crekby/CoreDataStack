@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3F91C1331C2C289E000801F1 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1281C2C289E000801F1 /* CoreDataStack.framework */; };
-		3F91C1381C2C289E000801F1 /* CoreDataStackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */; };
 		3F91C1431C2C28DF000801F1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1421C2C28DF000801F1 /* CoreData.framework */; };
 		3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE471C2C3AEA002442B3 /* CoreDataStack.h */; };
 		3F96EE4A1C2C3AEA002442B3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F96EE481C2C3AEA002442B3 /* Info.plist */; };
@@ -21,6 +20,8 @@
 		3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */; };
 		3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */; };
 		3F96EE761C33C7D3002442B3 /* TestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE741C33C7D3002442B3 /* TestEntity.m */; };
+		3F96EE781C33F11E002442B3 /* MainContextExeptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */; };
+		3F96EE7B1C33F1AE002442B3 /* CoreDataStackTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,6 @@
 /* Begin PBXFileReference section */
 		3F91C1281C2C289E000801F1 /* CoreDataStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreDataStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F91C1321C2C289E000801F1 /* CoreDataStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackTests.m; sourceTree = "<group>"; };
 		3F91C1391C2C289E000801F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F91C1421C2C28DF000801F1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3F96EE471C2C3AEA002442B3 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = SOURCE_ROOT; };
@@ -52,6 +52,9 @@
 		3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TestEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		3F96EE731C33C7D3002442B3 /* TestEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestEntity.h; sourceTree = "<group>"; };
 		3F96EE741C33C7D3002442B3 /* TestEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEntity.m; sourceTree = "<group>"; };
+		3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextExeptionsTests.m; sourceTree = "<group>"; };
+		3F96EE791C33F1AE002442B3 /* CoreDataStackTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStackTestCase.h; sourceTree = "<group>"; };
+		3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +109,9 @@
 		3F91C1361C2C289E000801F1 /* CoreDataStackTests */ = {
 			isa = PBXGroup;
 			children = (
+				3F96EE7C1C33F295002442B3 /* BaseClasses */,
 				3F96EE701C33C769002442B3 /* TestModel */,
-				3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */,
+				3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */,
 				3F91C1391C2C289E000801F1 /* Info.plist */,
 			);
 			path = CoreDataStackTests;
@@ -144,6 +148,15 @@
 				3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */,
 			);
 			name = TestModel;
+			sourceTree = "<group>";
+		};
+		3F96EE7C1C33F295002442B3 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				3F96EE791C33F1AE002442B3 /* CoreDataStackTestCase.h */,
+				3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */,
+			);
+			name = BaseClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,7 +283,8 @@
 			files = (
 				3F96EE761C33C7D3002442B3 /* TestEntity.m in Sources */,
 				3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */,
-				3F91C1381C2C289E000801F1 /* CoreDataStackTests.m in Sources */,
+				3F96EE7B1C33F1AE002442B3 /* CoreDataStackTestCase.m in Sources */,
+				3F96EE781C33F11E002442B3 /* MainContextExeptionsTests.m in Sources */,
 				3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
