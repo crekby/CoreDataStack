@@ -18,6 +18,9 @@
 		3F96EE631C317025002442B3 /* ITManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE611C317025002442B3 /* ITManagedObjectContext.m */; };
 		3F96EE661C318D2A002442B3 /* ITManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE641C318D2A002442B3 /* ITManagedObject.h */; };
 		3F96EE671C318D2A002442B3 /* ITManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE651C318D2A002442B3 /* ITManagedObject.m */; };
+		3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */; };
+		3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */; };
+		3F96EE761C33C7D3002442B3 /* TestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE741C33C7D3002442B3 /* TestEntity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,11 @@
 		3F96EE611C317025002442B3 /* ITManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITManagedObjectContext.m; path = Classes/ITManagedObjectContext.m; sourceTree = SOURCE_ROOT; };
 		3F96EE641C318D2A002442B3 /* ITManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITManagedObject.h; path = Classes/ITManagedObject.h; sourceTree = SOURCE_ROOT; };
 		3F96EE651C318D2A002442B3 /* ITManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITManagedObject.m; path = Classes/ITManagedObject.m; sourceTree = SOURCE_ROOT; };
+		3F96EE6E1C33C761002442B3 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
+		3F96EE711C33C7D3002442B3 /* TestEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TestEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		3F96EE731C33C7D3002442B3 /* TestEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestEntity.h; sourceTree = "<group>"; };
+		3F96EE741C33C7D3002442B3 /* TestEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEntity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 		3F91C1361C2C289E000801F1 /* CoreDataStackTests */ = {
 			isa = PBXGroup;
 			children = (
+				3F96EE701C33C769002442B3 /* TestModel */,
 				3F91C1371C2C289E000801F1 /* CoreDataStackTests.m */,
 				3F91C1391C2C289E000801F1 /* Info.plist */,
 			);
@@ -123,6 +132,18 @@
 				3F96EE651C318D2A002442B3 /* ITManagedObject.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		3F96EE701C33C769002442B3 /* TestModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F96EE711C33C7D3002442B3 /* TestEntity+CoreDataProperties.h */,
+				3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */,
+				3F96EE731C33C7D3002442B3 /* TestEntity.h */,
+				3F96EE741C33C7D3002442B3 /* TestEntity.m */,
+				3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */,
+			);
+			name = TestModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F96EE761C33C7D3002442B3 /* TestEntity.m in Sources */,
+				3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */,
 				3F91C1381C2C289E000801F1 /* CoreDataStackTests.m in Sources */,
+				3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +457,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3F96EE6E1C33C761002442B3 /* TestModel.xcdatamodel */,
+			);
+			currentVersion = 3F96EE6E1C33C761002442B3 /* TestModel.xcdatamodel */;
+			path = TestModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3F91C11F1C2C289E000801F1 /* Project object */;
 }
