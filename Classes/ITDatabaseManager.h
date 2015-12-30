@@ -102,4 +102,15 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
                                    sectionKeyPathName:(NSString *)keyPath
                                              delegate:(id<NSFetchedResultsControllerDelegate>)delegate;
 
+/**
+ Clear All entities from database in background context.
+*/
+- (void)clearAllEntities;
+
+/**
+ Clear All entities from database in background context and wait until operation complete.
+ */
+- (void)clearAllEntitiesAndWait;
+
+
 @end

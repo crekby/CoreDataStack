@@ -156,6 +156,22 @@
     return [self controllerWithRequest:request sectionKeyPathName:nil delegate:delegate];
 }
 
+#pragma mark Deleting all entities
+
+- (void)clearAllEntities
+{
+    [self.backgroundManagedObjectContext performBlock:^{
+        [self clearAllEntitiesInContext:self.backgroundManagedObjectContext];
+    }];
+}
+
+- (void)clearAllEntitiesAndWait
+{
+    [self.backgroundManagedObjectContext performBlockAndWait:^{
+        [self clearAllEntitiesInContext:self.backgroundManagedObjectContext];
+    }];
+}
+
 #pragma mark - Helpers
 
 - (BOOL)persistentStoreExistsAtURL:(NSURL *)url
@@ -289,6 +305,24 @@
                                                object:self.backgroundManagedObjectContext];
     
     return YES;
+}
+
+- (void)clearAllEntitiesInContext:(NSManagedObjectContext *)context
+{
+    NSArray *allEntities = self.model.entities;
+    
+    [allEntities enumerateObjectsUsingBlock:^(NSEntityDescription *entityDescription, NSUInteger idx, BOOL *stop) {
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityDescription.name];
+        NSError *error;
+        NSArray *results = [context executeFetchRequest:request error:&error];
+        if (!error) {
+            for (NSManagedObject *object in results) {
+                [context deleteObject:object];
+            }
+        }
+    }];
+    [context save:nil];
 }
 
 @end
