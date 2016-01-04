@@ -33,17 +33,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  Both contexts have same persistence store coordinator.
  And after saving changes in background context, they are merged to main context.
  */
-@interface ITDatabaseManager : NSObject
-
-/**
- NSManagedObjectContext for main thread.
- */
-@property (nonatomic, strong, readonly) NSManagedObjectContext *mainManagedObjectContext;
-
-/**
- NSManagedObjectContext for background thread.
- */
-@property (nonatomic, strong, readonly) NSManagedObjectContext *backgroundManagedObjectContext;
+@interface ITDatabaseOperationsQueue : NSObject
 
 /**
  URL to Documents directory in application sandbox.
@@ -55,34 +45,31 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
- Returns Database manager instance with given parametrs.
- @param model Model object.
- @param storeName Name for store on file system.
- @param storeType Store type (NSSQLiteStoreType, NSBinaryStoreType, NSInMemoryStoreType).
+
  */
-- (instancetype)initWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPersistenceStoreCoordinator:(NSPersistentStoreCoordinator*)storeCoordinator managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext NS_DESIGNATED_INITIALIZER;
 
 /**
  Executes given block in main trhead. 
  @warning DO NOT USE MAIN THREAD CONTEXT FOR CHANGES, USE IT ONLY FOR FETCHING.
  @param backgroundOperation Block for execution.
  */
-- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
+- (void)executeReadOnlyOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
 
 /**
  Executes given block in background.
  @warning USE BACKGROUND CONTEXT FOR MAKING CHANGES IN YOUR MODEL, NOT MAIN CONTEXT.
  @param backgroundOperation Block for execution.
  */
-- (void)executeBackgroundOperation:(void (^)(NSManagedObjectContext *context))backgroundOperation;
+- (void)executeOperation:(void (^)(NSManagedObjectContext *context))backgroundOperation;
 
 /**
  Executes given blocks in background and in main context respectively. Background block should return fetched data or nil.
  @param backgroundOperation Block for background context execution, use it to fetching and changing your data. return your results from this block.
  @param mainThreadOperation Block for mainThread context execution, result from backgroun operation sending to this block from main context.
  */
-- (void)executeBackgroundOperation:(BackroundOperationWithResultBlock)backgroundOperation
-               mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
+- (void)executeOperation:(BackroundOperationWithResultBlock)backgroundOperation
+               readOnlyOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
 
 /**
  Returns fetch result controller with given properties. Executes in main context.
