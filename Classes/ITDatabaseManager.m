@@ -8,7 +8,6 @@
 
 #import "ITDatabaseManager.h"
 #import "ITManagedObjectContext.h"
-#import "ITManagedObject.h"
 #import <CoreData/CoreData.h>
 #import <objc/runtime.h>
 #import <objc/message.h>
@@ -41,7 +40,6 @@
         _storeURL = [[ITDatabaseManager applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
         NSAssert([self initialisePersistenceStore], @"Unable to initialise persistence store");
         NSAssert([self createManagedObjectContexts], @"Unable to create Managed Object Contexts");
-        [self swizzleWillChangeValueForKeyInModelEntitiesClasses];
     }
     return self;
 }
@@ -102,7 +100,9 @@
         
         NSError *error;
         
-        [backgroundContext save:&error];
+        if (backgroundContext.hasChanges) {
+            [backgroundContext save:&error];
+        }
         
         if (error) {
             mainThreadOperationBlock(error, nil);
@@ -219,6 +219,9 @@
 - (void)backgroundContextDidSave:(NSNotification *)notification
 {
     [self.mainManagedObjectContext performBlock:^{
+        if (self.mainManagedObjectContext.hasChanges) {
+            [self.mainManagedObjectContext rollback];
+        }
         NSArray* updated = [notification.userInfo valueForKey:NSUpdatedObjectsKey];
         // Fault all objects that will be updated.
         for (NSManagedObject* obj in updated) {
@@ -231,22 +234,6 @@
 }
 
 #pragma mark - Private Methods
-
-- (void)swizzleWillChangeValueForKeyInModelEntitiesClasses
-{
-    for (NSEntityDescription *description in self.model.entities) {
-        Class entityClass = NSClassFromString(description.managedObjectClassName);
-        if (!entityClass) {
-            continue;
-        }
-        SEL sel = @selector(willChangeValueForKey:);
-        Method origMethod = class_getInstanceMethod(entityClass, sel);
-        Method newMethod = class_getInstanceMethod(ITManagedObject.class, sel);
-        if(!class_addMethod(entityClass, sel, method_getImplementation(newMethod), method_getTypeEncoding(newMethod))) {
-            method_exchangeImplementations(origMethod, newMethod);
-        }
-    }
-}
 
 - (BOOL)initialisePersistenceStore
 {

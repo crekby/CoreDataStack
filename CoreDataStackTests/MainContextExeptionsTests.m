@@ -37,20 +37,6 @@ static NSString *kITChangesExceptionMessage = @"Changes in main context is not a
     [self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
-- (void)testThatChangingObjectInMainContextWillTrowExeption
-{
-    XCTestExpectation *expectation = [self expectationWithDescription:@"Wait expectation"];
-    [self.databaseManager executeBackgroundOperation:^NSArray *(NSManagedObjectContext *context) {
-        TestEntity *object = [TestEntity insertObjectInManagedObjectContext:context];
-        return @[object];
-    } mainThreadOperation:^(NSError *error, NSArray *result) {
-        TestEntity *object = result.firstObject;
-        XCTAssertThrowsSpecific([object setValue:@"1" forKey:@"testProperty"], NSException, @"%@", kITChangesExceptionMessage);
-        [expectation fulfill];
-    }];
-    [self waitForExpectationsWithTimeout:5 handler:nil];
-}
-
 - (void)testThatMainContextSaveThrowsException
 {
     [self.databaseManager executeMainThreadOperation:^(NSManagedObjectContext *context) {
