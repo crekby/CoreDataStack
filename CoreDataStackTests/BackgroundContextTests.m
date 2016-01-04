@@ -21,10 +21,10 @@ static NSString *kITTestEntityName = @"TestEntity";
 - (void)testThatBackroundContextReturnObjectInMainContext
 {
     XCTestExpectation* expectation = [self expectationWithDescription:@"Wait expectation"];
-    [self.databaseManager executeBackgroundOperation:^NSArray *(NSManagedObjectContext *context) {
+    [self.databaseQueue executeOperation:^NSArray *(NSManagedObjectContext *context) {
         TestEntity *object = [TestEntity insertObjectInManagedObjectContext:context];
         return @[object];
-    } mainThreadOperation:^(NSError *error, NSArray *result) {
+    } readOnlyOperation:^(NSError *error, NSArray *result) {
         XCTAssertNil(error);
         TestEntity *object = result.firstObject;
         XCTAssertNotNil(object);
