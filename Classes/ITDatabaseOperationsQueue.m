@@ -12,11 +12,8 @@
 @interface ITDatabaseOperationsQueue()
 
 @property (nonatomic, strong) NSManagedObjectModel *model;
-@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectContext *readOnlyContext;
 @property (nonatomic, strong) NSManagedObjectContext *changesContext;
-@property (nonatomic, strong) NSString *storeType;
-@property (nonatomic, strong) NSURL *storeURL;
 
 @end
 
@@ -24,23 +21,22 @@
 
 #pragma mark - Inits
 
-- (instancetype)initWithPersistenceStoreCoordinator:(NSPersistentStoreCoordinator*)storeCoordinator managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext
+- (instancetype)initWithModel:(NSManagedObjectModel*)model managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext
 {
-    NSParameterAssert(storeCoordinator);
     NSParameterAssert(context);
+    NSParameterAssert(model);
     NSParameterAssert(readOnlyContext);
     self = [super init];
     if (self) {
-        _persistentStoreCoordinator = storeCoordinator;
         _readOnlyContext = readOnlyContext;
         _changesContext = context;
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(mainContextDidSave:)
+                                                 selector:@selector(readOnlyContextDidSave:)
                                                      name:NSManagedObjectContextDidSaveNotification
                                                    object:readOnlyContext];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(backgroundContextDidSave:)
+                                                 selector:@selector(changesContextDidSave:)
                                                      name:NSManagedObjectContextDidSaveNotification
                                                    object:context];
     }
@@ -177,14 +173,12 @@
 
 #pragma mark - Notifications
 
-- (void)mainContextDidSave:(NSNotification *)notification
+- (void)readOnlyContextDidSave:(NSNotification *)notification
 {
-    [self.readOnlyContext performBlock:^{
-        [self.changesContext mergeChangesFromContextDidSaveNotification:notification];
-    }];
+    NSAssert(NO, @"This is readonly context use another context");
 }
 
-- (void)backgroundContextDidSave:(NSNotification *)notification
+- (void)changesContextDidSave:(NSNotification *)notification
 {
     [self.readOnlyContext performBlock:^{
         if (self.readOnlyContext.hasChanges) {

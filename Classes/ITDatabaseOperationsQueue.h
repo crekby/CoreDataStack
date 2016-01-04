@@ -47,7 +47,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 /**
 
  */
-- (instancetype)initWithPersistenceStoreCoordinator:(NSPersistentStoreCoordinator*)storeCoordinator managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithModel:(NSManagedObjectModel*)model managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext NS_DESIGNATED_INITIALIZER;
 
 /**
  Executes given block in main trhead. 

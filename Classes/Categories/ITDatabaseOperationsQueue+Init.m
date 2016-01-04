@@ -33,7 +33,7 @@
     [mainManagedObjectContext setPersistentStoreCoordinator:storeCoordinator];
     [mainManagedObjectContext setName:@"ITDatabaseManager.MainQueue"];
         
-    self = [self initWithPersistenceStoreCoordinator:storeCoordinator managedObjectContext:backgroundManagedObjectContext readOnlyManagedObjectContext:mainManagedObjectContext];
+    self = [self initWithModel:model managedObjectContext:backgroundManagedObjectContext readOnlyManagedObjectContext:mainManagedObjectContext];
     return self;
 }
 
