@@ -9,7 +9,7 @@
 #import "ITDatabaseOperationsQueue.h"
 
 typedef NS_OPTIONS(NSUInteger, ITLogLevel) {
-    ITLogLevelOff = 1 << 0,
+    ITLogLevelOff = 0,
     ITLogLevelMessages = 1 << 1,
     ITLogLevelWarnings = 1 << 2,
     ITLogLevelErrors = 1 << 3,
