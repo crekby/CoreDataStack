@@ -44,6 +44,11 @@
     NSURL *storeURL = [[ITDatabaseOperationsQueue applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
     NSError *existError;
     BOOL exists = [self persistentStoreExistsAtURL:storeURL error:&existError];
+    
+    if (existError) {
+        return nil;
+    }
+    
     if (exists) {
         BOOL compatible = [self isModel:model compatibleWithPersistentStoreAtURL:storeURL storeType:storeType];
         if (!compatible) {
