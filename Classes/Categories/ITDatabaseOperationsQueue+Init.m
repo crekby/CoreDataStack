@@ -48,7 +48,6 @@
     
     if (existError) {
         [self logError:existError];
-        return nil;
     }
     
     if (exists) {
