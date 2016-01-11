@@ -15,3 +15,4 @@
 - (instancetype)initWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType;
 
 @end
+

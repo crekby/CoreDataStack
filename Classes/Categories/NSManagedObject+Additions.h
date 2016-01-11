@@ -13,3 +13,4 @@
 +(nullable __kindof NSManagedObject *) insertObjectInManagedObjectContext:(nonnull NSManagedObjectContext *)context;
 
 @end
+
