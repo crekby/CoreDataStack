@@ -7,11 +7,13 @@
 //
 
 #import "ITCoreDataOperationQueue.h"
+#import "ITCoreDataOperationQueue+Logging.h"
 
 @interface ITCoreDataOperationQueue(Private)
 
 @property (nonatomic, strong, readonly) NSManagedObjectModel *model;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *readOnlyContext;
 @property (nonatomic, strong, readonly) NSManagedObjectContext *changesContext;
+@property (nonatomic, assign) ITLogLevel loggingLevel;
 
 @end

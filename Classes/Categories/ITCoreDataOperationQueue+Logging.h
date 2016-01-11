@@ -18,8 +18,6 @@ typedef NS_OPTIONS(NSUInteger, ITLogLevel) {
 
 @interface ITCoreDataOperationQueue(Logging)
 
-@property (nonatomic, assign) ITLogLevel loggingLevel;
-
 - (void)setLogLevel:(ITLogLevel)logLevel;
 
 - (void)logMessage:(NSString*)message;

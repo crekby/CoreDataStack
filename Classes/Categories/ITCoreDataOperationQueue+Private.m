@@ -13,5 +13,6 @@
 @dynamic model;
 @dynamic readOnlyContext;
 @dynamic changesContext;
+@dynamic loggingLevel;
 
 @end

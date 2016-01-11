@@ -7,6 +7,7 @@
 //
 
 #import "ITCoreDataOperationQueue+Logging.h"
+#import "ITCoreDataOperationQueue+Private.h"
 
 @implementation ITCoreDataOperationQueue(Logging)
 
@@ -45,7 +46,7 @@
 
 - (void)logString:(NSString*)string
 {
-    NSLog(@"ITCoreDataOperationQueue log: %@", string);
+    printf("[ITCoreDataOperationQueue]: %s", [string UTF8String]);
 }
 
 @end

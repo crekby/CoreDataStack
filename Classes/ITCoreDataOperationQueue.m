@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSManagedObjectModel *model;
 @property (nonatomic, strong) NSManagedObjectContext *readOnlyContext;
 @property (nonatomic, strong) NSManagedObjectContext *changesContext;
+@property (nonatomic, assign) ITLogLevel loggingLevel;
 
 @end
 
