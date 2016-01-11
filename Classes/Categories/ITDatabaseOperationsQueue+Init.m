@@ -54,7 +54,7 @@
     if (exists) {
         BOOL compatible = [self isModel:model compatibleWithPersistentStoreAtURL:storeURL storeType:storeType];
         if (!compatible) {
-            return nil;
+            [self logWarning:@"Migration Needed"];
         }
     }
     
