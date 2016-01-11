@@ -31,14 +31,9 @@
         _readOnlyContext = readOnlyContext;
         _changesContext = context;
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(readOnlyContextDidSave:)
+                                                 selector:@selector(contextDidSave:)
                                                      name:NSManagedObjectContextDidSaveNotification
-                                                   object:readOnlyContext];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(changesContextDidSave:)
-                                                     name:NSManagedObjectContextDidSaveNotification
-                                                   object:context];
+                                                   object:nil];
     }
     return self;
 }
@@ -57,7 +52,7 @@
 
 #pragma mark - Public
 
-- (void)executeReadOnlyOperation:(void (^)(NSManagedObjectContext *))mainThreadOperation
+- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *))mainThreadOperation
 {
     NSAssert(mainThreadOperation, @"No Main Thread operation to perform");
     
@@ -74,10 +69,9 @@
     }];
 }
 
-- (void)executeOperation:(BackroundOperationWithResultBlock)backgroundOperation readOnlyOperation:(MainThreadOperationWithResultBlock)mainThreadOperation
+- (void)executeOperation:(BackroundOperationWithResultBlock)backgroundOperation mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation
 {
     NSAssert(backgroundOperation, @"No Background operation to perform");
-    NSAssert(mainThreadOperation, @"No Main Thread operation to perform");
     
     void (^mainThreadOperationBlock) (NSError *, NSArray *) = ^(NSError *error, NSArray *array) {
         if (mainThreadOperation) {
@@ -109,7 +103,7 @@
         } else {
             if (result.count > 0 && mainThreadOperation) {
                 NSArray *objectIDs = [result valueForKey:@"objectID"];
-                [self executeReadOnlyOperation:^(NSManagedObjectContext *mainThreadContext) {
+                [self executeMainThreadOperation:^(NSManagedObjectContext *mainThreadContext) {
                     
                     // Fetch Main Thread Objects
                     NSString *entity = ((NSManagedObject*)[result firstObject]).entity.name;
@@ -173,26 +167,26 @@
 
 #pragma mark - Notifications
 
-- (void)readOnlyContextDidSave:(NSNotification *)notification
+- (void)contextDidSave:(NSNotification *)notification
 {
-    NSAssert(NO, @"This is readonly context use another context");
-}
-
-- (void)changesContextDidSave:(NSNotification *)notification
-{
-    [self.readOnlyContext performBlock:^{
-        if (self.readOnlyContext.hasChanges) {
-            [self.readOnlyContext rollback];
-        }
-        NSArray* updated = [notification.userInfo valueForKey:NSUpdatedObjectsKey];
-        // Fault all objects that will be updated.
-        for (NSManagedObject* obj in updated) {
-            NSManagedObject* mainThreadObject = [self.readOnlyContext existingObjectWithID:obj.objectID error:nil];
-            [mainThreadObject willAccessValueForKey:nil];
-        }
-        
-        [self.readOnlyContext mergeChangesFromContextDidSaveNotification:notification];
-    }];
+    NSManagedObjectContext *context = notification.object;
+    if ([context isEqual:self.readOnlyContext]) {
+        NSAssert(NO, @"This is readonly context use another context");
+    } else if ([context isEqual:self.changesContext]) {
+        [self.readOnlyContext performBlock:^{
+            if (self.readOnlyContext.hasChanges) {
+                [self.readOnlyContext rollback];
+            }
+            NSArray* updated = [notification.userInfo valueForKey:NSUpdatedObjectsKey];
+            // Fault all objects that will be updated.
+            for (NSManagedObject* obj in updated) {
+                NSManagedObject* mainThreadObject = [self.readOnlyContext existingObjectWithID:obj.objectID error:nil];
+                [mainThreadObject willAccessValueForKey:nil];
+            }
+            
+            [self.readOnlyContext mergeChangesFromContextDidSaveNotification:notification];
+        }];
+    }
 }
 
 #pragma mark - Private Methods

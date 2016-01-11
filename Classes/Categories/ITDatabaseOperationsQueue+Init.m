@@ -10,7 +10,7 @@
 
 @implementation ITDatabaseOperationsQueue(Init)
 
-+ (instancetype)operationQueueWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType
++ (instancetype)newOperationQueueWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType
 {
     return [[self alloc] initWithModel:model storeName:storeName storeType:storeType];
 }
@@ -21,7 +21,7 @@
     NSParameterAssert(storeName);
     NSParameterAssert(storeType);
     
-    NSPersistentStoreCoordinator *storeCoordinator = [self persistenceStoreCoordinatorWithModel:model storeType:storeType storeName:storeName];
+    NSPersistentStoreCoordinator *storeCoordinator = [self newPersistenceStoreCoordinatorWithModel:model storeType:storeType storeName:storeName];
     
     NSManagedObjectContext *backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [backgroundManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
@@ -37,7 +37,7 @@
     return self;
 }
 
-- (NSPersistentStoreCoordinator*)persistenceStoreCoordinatorWithModel:(NSManagedObjectModel*)model storeType:(NSString*)storeType storeName:(NSString*)storeName
+- (NSPersistentStoreCoordinator*)newPersistenceStoreCoordinatorWithModel:(NSManagedObjectModel*)model storeType:(NSString*)storeType storeName:(NSString*)storeName
 {
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     

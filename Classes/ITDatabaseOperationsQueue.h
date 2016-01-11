@@ -61,7 +61,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  @warning DO NOT USE READ ONLY CONTEXT FOR CHANGES, USE IT ONLY FOR FETCHING.
  @param backgroundOperation Block for execution.
  */
-- (void)executeReadOnlyOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
+- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
 
 /**
  Executes given block in background.
@@ -76,7 +76,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  @param mainThreadOperation Block for mainThread context execution, result from backgroun operation sending to this block from main context.
  */
 - (void)executeOperation:(BackroundOperationWithResultBlock)backgroundOperation
-               readOnlyOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
+               mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
 
 /**
  Returns fetch result controller with given properties. Executes in main context.
@@ -99,7 +99,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 /**
  Clear All entities from database in background context.
 */
-- (void)clearAllEntities;
+- (void)clearAllEntitiesWithCompletion:(void (^)(NSError *error))completion;
 
 /**
  Clear All entities from database in background context and wait until operation complete.
