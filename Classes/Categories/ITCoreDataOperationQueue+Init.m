@@ -38,7 +38,7 @@
     return self;
 }
 
-- (NSPersistentStoreCoordinator*)newPersistenceStoreCoordinatorWithModel:(NSManagedObjectModel*)model storeType:(NSString*)storeType storeName:(NSString*)storeName
+- (NSPersistentStoreCoordinator *)newPersistenceStoreCoordinatorWithModel:(NSManagedObjectModel *)model storeType:(NSString *)storeType storeName:(NSString *)storeName
 {
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     

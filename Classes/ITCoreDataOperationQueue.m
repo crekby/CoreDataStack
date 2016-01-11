@@ -24,7 +24,7 @@
 
 #pragma mark - Inits
 
-- (instancetype)initWithModel:(NSManagedObjectModel*)model managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext
+- (instancetype)initWithModel:(NSManagedObjectModel *)model managedObjectContext:(NSManagedObjectContext *)context readOnlyManagedObjectContext:(NSManagedObjectContext *)readOnlyContext
 {
     NSParameterAssert(context);
     NSParameterAssert(model);

@@ -14,7 +14,7 @@
 
 - (NSFetchedResultsController *)newControllerWithRequest:(NSFetchRequest *)request
                                    sectionKeyPathName:(NSString *)keyPath
-                                             delegate:(id<NSFetchedResultsControllerDelegate>)delegate
+                                             delegate:(id <NSFetchedResultsControllerDelegate>)delegate
 {
     NSAssert([request.sortDescriptors count] > 0, @"NSFetchedResultController requres sort descriptors.");
     NSAssert(request.resultType == NSManagedObjectResultType, @"NSFetchedResultController requires NSManagedObject Result Type");

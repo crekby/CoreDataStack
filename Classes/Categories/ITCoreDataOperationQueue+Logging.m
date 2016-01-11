@@ -44,7 +44,7 @@
 
 #pragma mark - Private
 
-- (void)logString:(NSString*)string
+- (void)logString:(NSString *)string
 {
     printf("[ITCoreDataOperationQueue]: %s", [string UTF8String]);
 }

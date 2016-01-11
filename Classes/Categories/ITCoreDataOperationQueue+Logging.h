@@ -20,10 +20,10 @@ typedef NS_OPTIONS(NSUInteger, ITLogLevel) {
 
 - (void)setLogLevel:(ITLogLevel)logLevel;
 
-- (void)logMessage:(NSString*)message;
+- (void)logMessage:(NSString *)message;
 
-- (void)logWarning:(NSString*)warning;
+- (void)logWarning:(NSString *)warning;
 
-- (void)logError:(NSError*)error;
+- (void)logError:(NSError *)error;
 
 @end
