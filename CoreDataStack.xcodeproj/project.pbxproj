@@ -10,7 +10,6 @@
 		3F91C1331C2C289E000801F1 /* CoreDataStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1281C2C289E000801F1 /* CoreDataStack.framework */; };
 		3F91C1431C2C28DF000801F1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1421C2C28DF000801F1 /* CoreData.framework */; };
 		3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE471C2C3AEA002442B3 /* CoreDataStack.h */; };
-		3F96EE4A1C2C3AEA002442B3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F96EE481C2C3AEA002442B3 /* Info.plist */; };
 		3F96EE4D1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE4B1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h */; };
 		3F96EE4E1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE4C1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m */; };
 		3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */; };
@@ -289,7 +288,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F96EE4A1C2C3AEA002442B3 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
