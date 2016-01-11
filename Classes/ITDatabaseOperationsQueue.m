@@ -66,6 +66,8 @@
     NSAssert(operation, @"No Background operation to perform");
     [self.changesContext performBlock:^{
         operation(self.changesContext);
+        NSError *error;
+        [self.changesContext save:&error];
     }];
 }
 
@@ -151,17 +153,27 @@
 
 #pragma mark Deleting all entities
 
-- (void)clearAllEntities
+- (void)clearAllEntitiesWithCompletion:(void (^)(NSError *))completion
 {
     [self.changesContext performBlock:^{
-        [self clearAllEntitiesInContext:self.changesContext];
-    }];
-}
-
-- (void)clearAllEntitiesAndWait
-{
-    [self.changesContext performBlockAndWait:^{
-        [self clearAllEntitiesInContext:self.changesContext];
+        NSArray *allEntities = self.model.entities;
+        
+        [allEntities enumerateObjectsUsingBlock:^(NSEntityDescription *entityDescription, NSUInteger idx, BOOL *stop) {
+            
+            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityDescription.name];
+            NSError *error;
+            NSArray *results = [self.changesContext executeFetchRequest:request error:&error];
+            if (!error) {
+                for (NSManagedObject *object in results) {
+                    [self.changesContext deleteObject:object];
+                }
+            }
+        }];
+        NSError *error;
+        [self.changesContext save:&error];
+        if (completion) {
+            completion(error);
+        }
     }];
 }
 
@@ -189,25 +201,4 @@
     }
 }
 
-#pragma mark - Private Methods
-
-- (void)clearAllEntitiesInContext:(NSManagedObjectContext *)context
-{
-    NSArray *allEntities = self.model.entities;
-    
-    [allEntities enumerateObjectsUsingBlock:^(NSEntityDescription *entityDescription, NSUInteger idx, BOOL *stop) {
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityDescription.name];
-        NSError *error;
-        NSArray *results = [context executeFetchRequest:request error:&error];
-        if (!error) {
-            for (NSManagedObject *object in results) {
-                [context deleteObject:object];
-            }
-        }
-    }];
-    [context save:nil];
-}
-
 @end
-

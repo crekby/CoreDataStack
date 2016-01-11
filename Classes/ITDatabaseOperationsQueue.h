@@ -101,11 +101,4 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 */
 - (void)clearAllEntitiesWithCompletion:(void (^)(NSError *error))completion;
 
-/**
- Clear All entities from database in background context and wait until operation complete.
- */
-- (void)clearAllEntitiesAndWait;
-
-
 @end
-
