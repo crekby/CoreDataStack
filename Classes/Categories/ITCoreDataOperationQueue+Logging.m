@@ -1,34 +1,32 @@
 //
-//  ITDatabaseOperationsQueue+Logging.m
+//  ITCoreDataOperationQueue+Logging.m
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/11/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue+Logging.h"
+#import "ITCoreDataOperationQueue+Logging.h"
 
-static ITLogLevel loggingLevel;
+@implementation ITCoreDataOperationQueue(Logging)
 
-@implementation ITDatabaseOperationsQueue(Logging)
-
-+ (void)setLogLevel:(ITLogLevel)logLevel
+- (void)setLogLevel:(ITLogLevel)logLevel
 {
-    if (logLevel != loggingLevel) {
-        loggingLevel = logLevel;
+    if (logLevel != self.loggingLevel) {
+        self.loggingLevel = logLevel;
     }
 }
 
 - (void)logMessage:(NSString *)message
 {
-    if ((loggingLevel & ITLogLevelMessages)) {
+    if ((self.loggingLevel & ITLogLevelMessages)) {
         [self logString:message];
     }
 }
 
 - (void)logWarning:(NSString *)warning
 {
-    if ((loggingLevel & ITLogLevelWarnings)) {
+    if ((self.loggingLevel & ITLogLevelWarnings)) {
         [self logString:warning];
     }
 }
@@ -38,7 +36,7 @@ static ITLogLevel loggingLevel;
     if (!error) {
         return;
     }
-    if ((loggingLevel & ITLogLevelErrors)) {
+    if ((self.loggingLevel & ITLogLevelErrors)) {
         [self logString:[NSString stringWithFormat:@"%@", error]];
     }
 }
@@ -47,7 +45,7 @@ static ITLogLevel loggingLevel;
 
 - (void)logString:(NSString*)string
 {
-    NSLog(@"ITDatabaseOperationsQueue log: %@", string);
+    NSLog(@"ITCoreDataOperationQueue log: %@", string);
 }
 
 @end

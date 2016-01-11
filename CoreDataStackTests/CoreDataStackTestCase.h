@@ -10,10 +10,10 @@
 #import "CoreDataStack.h"
 #import <CoreData/CoreData.h>
 
-@class ITDatabaseOperationsQueue;
+@class ITCoreDataOperationQueue;
 
 @interface CoreDataStackTestCase : XCTestCase
 
-@property (nonatomic, strong) ITDatabaseOperationsQueue *databaseQueue;
+@property (nonatomic, strong) ITCoreDataOperationQueue *databaseQueue;
 
 @end

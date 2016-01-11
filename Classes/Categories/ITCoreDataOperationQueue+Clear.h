@@ -1,14 +1,14 @@
 //
-//  ITDatabaseOperationsQueue+Clear.h
+//  ITCoreDataOperationQueue+Clear.h
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/11/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue.h"
+#import "ITCoreDataOperationQueue.h"
 
-@interface ITDatabaseOperationsQueue(Clear)
+@interface ITCoreDataOperationQueue(Clear)
 
 /**
  Clear All entities from database in background context.

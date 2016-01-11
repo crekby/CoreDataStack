@@ -10,7 +10,7 @@
 
 @implementation NSManagedObject(Additions)
 
-+(nullable __kindof NSManagedObject *) insertObjectInManagedObjectContext:(NSManagedObjectContext *)context
++(nullable NSManagedObject *) insertObjectInManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSParameterAssert(context);
     NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self)

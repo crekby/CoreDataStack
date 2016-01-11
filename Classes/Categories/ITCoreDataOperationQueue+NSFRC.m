@@ -1,18 +1,18 @@
 //
-//  ITDatabaseOperationsQueue+NSFRC.m
+//  ITCoreDataOperationQueue+NSFRC.m
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/11/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue+NSFRC.h"
-#import "ITDatabaseOperationsQueue+Private.h"
-#import "ITDatabaseOperationsQueue+Logging.h"
+#import "ITCoreDataOperationQueue+NSFRC.h"
+#import "ITCoreDataOperationQueue+Private.h"
+#import "ITCoreDataOperationQueue+Logging.h"
 
-@implementation ITDatabaseOperationsQueue(NSFRC)
+@implementation ITCoreDataOperationQueue(NSFRC)
 
-- (NSFetchedResultsController *)controllerWithRequest:(NSFetchRequest *)request
+- (NSFetchedResultsController *)newControllerWithRequest:(NSFetchRequest *)request
                                    sectionKeyPathName:(NSString *)keyPath
                                              delegate:(id<NSFetchedResultsControllerDelegate>)delegate
 {
@@ -32,10 +32,10 @@
     return controller;
 }
 
-- (NSFetchedResultsController*)controllerWithRequest:(NSFetchRequest *)request
+- (NSFetchedResultsController *)newControllerWithRequest:(NSFetchRequest *)request
                                          andDelegate:(id <NSFetchedResultsControllerDelegate>)delegate
 {
-    return [self controllerWithRequest:request sectionKeyPathName:nil delegate:delegate];
+    return [self newControllerWithRequest:request sectionKeyPathName:nil delegate:delegate];
 }
 
 @end

@@ -1,14 +1,14 @@
 //
-//  ITDatabaseOperationsQueue+Additions.h
+//  ITCoreDataOperationQueue+Additions.h
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/4/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue.h"
+#import "ITCoreDataOperationQueue.h"
 
-@interface ITDatabaseOperationsQueue(Init)
+@interface ITCoreDataOperationQueue(Init)
 
 /**
  Returns new database operations queue instance with given parametrs.

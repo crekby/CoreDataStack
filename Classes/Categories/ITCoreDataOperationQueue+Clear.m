@@ -1,16 +1,16 @@
 //
-//  ITDatabaseOperationsQueue+Clear.m
+//  ITCoreDataOperationQueue+Clear.m
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/11/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue+Clear.h"
-#import "ITDatabaseOperationsQueue+Private.h"
-#import "ITDatabaseOperationsQueue+Logging.h"
+#import "ITCoreDataOperationQueue+Clear.h"
+#import "ITCoreDataOperationQueue+Private.h"
+#import "ITCoreDataOperationQueue+Logging.h"
 
-@implementation ITDatabaseOperationsQueue(Clear)
+@implementation ITCoreDataOperationQueue(Clear)
 
 - (void)clearAllEntitiesWithCompletion:(void (^)(NSError *))completion
 {

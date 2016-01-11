@@ -6,12 +6,20 @@
 //  Copyright © 2015 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue.h"
-#import "ITDatabaseOperationsQueue+Logging.h"
-#import "ITDatabaseOperationsQueue+Private.h"
+#import "ITCoreDataOperationQueue.h"
+#import "ITCoreDataOperationQueue+Logging.h"
+#import "ITCoreDataOperationQueue+Private.h"
 #import <CoreData/CoreData.h>
 
-@implementation ITDatabaseOperationsQueue
+@interface ITCoreDataOperationQueue()
+
+@property (nonatomic, strong) NSManagedObjectModel *model;
+@property (nonatomic, strong) NSManagedObjectContext *readOnlyContext;
+@property (nonatomic, strong) NSManagedObjectContext *changesContext;
+
+@end
+
+@implementation ITCoreDataOperationQueue
 
 #pragma mark - Inits
 
@@ -22,8 +30,8 @@
     NSParameterAssert(readOnlyContext);
     self = [super init];
     if (self) {
-        self.readOnlyContext = readOnlyContext;
-        self.changesContext = context;
+        _readOnlyContext = readOnlyContext;
+        _changesContext = context;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(contextDidSave:)
                                                      name:NSManagedObjectContextDidSaveNotification

@@ -33,7 +33,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  Both contexts have same persistence store coordinator.
  And after saving changes in background context, they are merged to main context.
  */
-@interface ITDatabaseOperationsQueue : NSObject
+@interface ITCoreDataOperationQueue : NSObject
 
 /**
  URL to Documents directory in application sandbox.

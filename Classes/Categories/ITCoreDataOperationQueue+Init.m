@@ -1,15 +1,15 @@
 //
-//  ITDatabaseOperationsQueue+Additions.m
+//  ITCoreDataOperationQueue+Additions.m
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/4/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue+Init.h"
-#import "ITDatabaseOperationsQueue+Logging.h"
+#import "ITCoreDataOperationQueue+Init.h"
+#import "ITCoreDataOperationQueue+Logging.h"
 
-@implementation ITDatabaseOperationsQueue(Init)
+@implementation ITCoreDataOperationQueue(Init)
 
 + (instancetype)newOperationQueueWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType
 {
@@ -42,7 +42,7 @@
 {
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     
-    NSURL *storeURL = [[ITDatabaseOperationsQueue applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
+    NSURL *storeURL = [[ITCoreDataOperationQueue applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
     NSError *existError;
     BOOL exists = [self persistentStoreExistsAtURL:storeURL error:&existError];
     
@@ -72,7 +72,7 @@
 
 #pragma mark - Helpers
 
-- (BOOL)persistentStoreExistsAtURL:(NSURL *)url error:(NSError**)error
+- (BOOL)persistentStoreExistsAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error
 {
     BOOL resourceIsReachable = [url checkResourceIsReachableAndReturnError:error];
     return resourceIsReachable;

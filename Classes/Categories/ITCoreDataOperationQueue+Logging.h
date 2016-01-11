@@ -1,12 +1,12 @@
 //
-//  ITDatabaseOperationsQueue+Logging.h
+//  ITCoreDataOperationQueue+Logging.h
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/11/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue.h"
+#import "ITCoreDataOperationQueue.h"
 
 typedef NS_OPTIONS(NSUInteger, ITLogLevel) {
     ITLogLevelOff = 0,
@@ -16,9 +16,11 @@ typedef NS_OPTIONS(NSUInteger, ITLogLevel) {
     ITLogLevelAll = ITLogLevelMessages | ITLogLevelWarnings | ITLogLevelErrors
 };
 
-@interface ITDatabaseOperationsQueue(Logging)
+@interface ITCoreDataOperationQueue(Logging)
 
-+ (void)setLogLevel:(ITLogLevel)logLevel;
+@property (nonatomic, assign) ITLogLevel loggingLevel;
+
+- (void)setLogLevel:(ITLogLevel)logLevel;
 
 - (void)logMessage:(NSString*)message;
 
