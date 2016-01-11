@@ -10,8 +10,20 @@
 
 @interface ITDatabaseOperationsQueue(Init)
 
+/**
+ Returns new database operations queue instance with given parametrs.
+ @param model Model object.
+ @param storeName Name for store on file system.
+ @param storeType Store type (NSSQLiteStoreType, NSBinaryStoreType, NSInMemoryStoreType).
+ */
 + (instancetype)newOperationQueueWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType;
 
+/**
+ init database operations queue instance with given parametrs.
+ @param model Model object.
+ @param storeName Name for store on file system.
+ @param storeType Store type (NSSQLiteStoreType, NSBinaryStoreType, NSInMemoryStoreType).
+*/
 - (instancetype)initWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType;
 
 @end
