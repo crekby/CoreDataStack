@@ -78,27 +78,4 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 - (void)executeOperation:(BackroundOperationWithResultBlock)backgroundOperation
                mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
 
-/**
- Returns fetch result controller with given properties. Executes in main context.
- @param request The fetch request used to get the objects..
- @param delegate delegate for fetch result controller.
- */
-- (NSFetchedResultsController*)controllerWithRequest:(NSFetchRequest *)request
-                                         andDelegate:(id <NSFetchedResultsControllerDelegate>)delegate;
-
-/**
- Returns fetch result controller with given properties. Executes in main context.
- @param request The fetch request used to get the objects..
- @param keyPath A key path on result objects that returns the section name. Pass nil to indicate that the controller should generate a single section.
- @param delegate delegate for fetch result controller.
- */
-- (NSFetchedResultsController *)controllerWithRequest:(NSFetchRequest *)request
-                                   sectionKeyPathName:(NSString *)keyPath
-                                             delegate:(id<NSFetchedResultsControllerDelegate>)delegate;
-
-/**
- Clear All entities from database in background context.
-*/
-- (void)clearAllEntitiesWithCompletion:(void (^)(NSError *error))completion;
-
 @end

@@ -8,15 +8,8 @@
 
 #import "ITDatabaseOperationsQueue.h"
 #import "ITDatabaseOperationsQueue+Logging.h"
+#import "ITDatabaseOperationsQueue+Private.h"
 #import <CoreData/CoreData.h>
-
-@interface ITDatabaseOperationsQueue()
-
-@property (nonatomic, strong) NSManagedObjectModel *model;
-@property (nonatomic, strong) NSManagedObjectContext *readOnlyContext;
-@property (nonatomic, strong) NSManagedObjectContext *changesContext;
-
-@end
 
 @implementation ITDatabaseOperationsQueue
 
@@ -29,8 +22,8 @@
     NSParameterAssert(readOnlyContext);
     self = [super init];
     if (self) {
-        _readOnlyContext = readOnlyContext;
-        _changesContext = context;
+        self.readOnlyContext = readOnlyContext;
+        self.changesContext = context;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(contextDidSave:)
                                                      name:NSManagedObjectContextDidSaveNotification
@@ -123,62 +116,6 @@
             } else {
                 mainThreadOperationBlock(nil, nil);
             }
-        }
-    }];
-}
-
-#pragma mark FetchResultController
-
-- (NSFetchedResultsController *)controllerWithRequest:(NSFetchRequest *)request
-                                   sectionKeyPathName:(NSString *)keyPath
-                                             delegate:(id<NSFetchedResultsControllerDelegate>)delegate
-{
-    NSAssert([request.sortDescriptors count] > 0, @"NSFetchedResultController requres sort descriptors.");
-    NSAssert(request.resultType == NSManagedObjectResultType, @"NSFetchedResultController requires NSManagedObject Result Type");
-    
-    NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                                 managedObjectContext:self.readOnlyContext
-                                                                                   sectionNameKeyPath:keyPath
-                                                                                            cacheName:nil];
-    controller.delegate = delegate;
-    NSError *error;
-    if (![controller performFetch:&error]) {
-        [self logError:error];
-        return nil;
-    }
-    return controller;
-}
-
-- (NSFetchedResultsController*)controllerWithRequest:(NSFetchRequest *)request
-                                         andDelegate:(id <NSFetchedResultsControllerDelegate>)delegate
-{
-    return [self controllerWithRequest:request sectionKeyPathName:nil delegate:delegate];
-}
-
-#pragma mark Deleting all entities
-
-- (void)clearAllEntitiesWithCompletion:(void (^)(NSError *))completion
-{
-    [self.changesContext performBlock:^{
-        NSArray *allEntities = self.model.entities;
-        
-        [allEntities enumerateObjectsUsingBlock:^(NSEntityDescription *entityDescription, NSUInteger idx, BOOL *stop) {
-            
-            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityDescription.name];
-            NSError *error;
-            NSArray *results = [self.changesContext executeFetchRequest:request error:&error];
-            [self logError:error];
-            if (!error) {
-                for (NSManagedObject *object in results) {
-                    [self.changesContext deleteObject:object];
-                }
-            }
-        }];
-        NSError *error;
-        [self.changesContext save:&error];
-        [self logError:error];
-        if (completion) {
-            completion(error);
         }
     }];
 }
