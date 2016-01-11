@@ -11,20 +11,17 @@
 		3F91C1431C2C28DF000801F1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F91C1421C2C28DF000801F1 /* CoreData.framework */; };
 		3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE471C2C3AEA002442B3 /* CoreDataStack.h */; };
 		3F96EE4A1C2C3AEA002442B3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3F96EE481C2C3AEA002442B3 /* Info.plist */; };
-		3F96EE4D1C2C3AF9002442B3 /* ITDatabaseManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE4B1C2C3AF9002442B3 /* ITDatabaseManager.h */; };
-		3F96EE4E1C2C3AF9002442B3 /* ITDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */; };
-		3F96EE621C317025002442B3 /* ITManagedObjectContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE601C317025002442B3 /* ITManagedObjectContext.h */; };
-		3F96EE631C317025002442B3 /* ITManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE611C317025002442B3 /* ITManagedObjectContext.m */; };
-		3F96EE661C318D2A002442B3 /* ITManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE641C318D2A002442B3 /* ITManagedObject.h */; };
-		3F96EE671C318D2A002442B3 /* ITManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE651C318D2A002442B3 /* ITManagedObject.m */; };
+		3F96EE4D1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE4B1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h */; };
+		3F96EE4E1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE4C1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m */; };
 		3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE6D1C33C761002442B3 /* TestModel.xcdatamodeld */; };
 		3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */; };
 		3F96EE761C33C7D3002442B3 /* TestEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE741C33C7D3002442B3 /* TestEntity.m */; };
-		3F96EE781C33F11E002442B3 /* MainContextExeptionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */; };
 		3F96EE7B1C33F1AE002442B3 /* CoreDataStackTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */; };
 		3F96EE7E1C33FEB4002442B3 /* BackgroundContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE7D1C33FEB4002442B3 /* BackgroundContextTests.m */; };
 		3F96EE821C34021E002442B3 /* NSManagedObject+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE801C34021E002442B3 /* NSManagedObject+Additions.h */; };
 		3F96EE831C34021E002442B3 /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */; };
+		3F96EE861C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE841C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h */; };
+		3F96EE871C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE851C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,23 +41,20 @@
 		3F91C1421C2C28DF000801F1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3F96EE471C2C3AEA002442B3 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = SOURCE_ROOT; };
 		3F96EE481C2C3AEA002442B3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		3F96EE4B1C2C3AF9002442B3 /* ITDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITDatabaseManager.h; path = Classes/ITDatabaseManager.h; sourceTree = SOURCE_ROOT; };
-		3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITDatabaseManager.m; path = Classes/ITDatabaseManager.m; sourceTree = SOURCE_ROOT; };
-		3F96EE601C317025002442B3 /* ITManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITManagedObjectContext.h; path = Classes/ITManagedObjectContext.h; sourceTree = SOURCE_ROOT; };
-		3F96EE611C317025002442B3 /* ITManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITManagedObjectContext.m; path = Classes/ITManagedObjectContext.m; sourceTree = SOURCE_ROOT; };
-		3F96EE641C318D2A002442B3 /* ITManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITManagedObject.h; path = Classes/ITManagedObject.h; sourceTree = SOURCE_ROOT; };
-		3F96EE651C318D2A002442B3 /* ITManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITManagedObject.m; path = Classes/ITManagedObject.m; sourceTree = SOURCE_ROOT; };
+		3F96EE4B1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITDatabaseOperationsQueue.h; path = Classes/ITDatabaseOperationsQueue.h; sourceTree = SOURCE_ROOT; };
+		3F96EE4C1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITDatabaseOperationsQueue.m; path = Classes/ITDatabaseOperationsQueue.m; sourceTree = SOURCE_ROOT; };
 		3F96EE6E1C33C761002442B3 /* TestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestModel.xcdatamodel; sourceTree = "<group>"; };
 		3F96EE711C33C7D3002442B3 /* TestEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
 		3F96EE721C33C7D3002442B3 /* TestEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TestEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		3F96EE731C33C7D3002442B3 /* TestEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestEntity.h; sourceTree = "<group>"; };
 		3F96EE741C33C7D3002442B3 /* TestEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestEntity.m; sourceTree = "<group>"; };
-		3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainContextExeptionsTests.m; sourceTree = "<group>"; };
 		3F96EE791C33F1AE002442B3 /* CoreDataStackTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStackTestCase.h; sourceTree = "<group>"; };
 		3F96EE7A1C33F1AE002442B3 /* CoreDataStackTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStackTestCase.m; sourceTree = "<group>"; };
 		3F96EE7D1C33FEB4002442B3 /* BackgroundContextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundContextTests.m; sourceTree = "<group>"; };
 		3F96EE801C34021E002442B3 /* NSManagedObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+Additions.h"; path = "Classes/Categories/NSManagedObject+Additions.h"; sourceTree = SOURCE_ROOT; };
 		3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Additions.m"; path = "Classes/Categories/NSManagedObject+Additions.m"; sourceTree = SOURCE_ROOT; };
+		3F96EE841C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ITDatabaseOperationsQueue+Init.h"; path = "Classes/Categories/ITDatabaseOperationsQueue+Init.h"; sourceTree = SOURCE_ROOT; };
+		3F96EE851C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ITDatabaseOperationsQueue+Init.m"; path = "Classes/Categories/ITDatabaseOperationsQueue+Init.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +111,6 @@
 			children = (
 				3F96EE7C1C33F295002442B3 /* BaseClasses */,
 				3F96EE701C33C769002442B3 /* TestModel */,
-				3F96EE771C33F11E002442B3 /* MainContextExeptionsTests.m */,
 				3F96EE7D1C33FEB4002442B3 /* BackgroundContextTests.m */,
 				3F91C1391C2C289E000801F1 /* Info.plist */,
 			);
@@ -136,12 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				3F96EE7F1C3401E9002442B3 /* Categories */,
-				3F96EE4B1C2C3AF9002442B3 /* ITDatabaseManager.h */,
-				3F96EE4C1C2C3AF9002442B3 /* ITDatabaseManager.m */,
-				3F96EE601C317025002442B3 /* ITManagedObjectContext.h */,
-				3F96EE611C317025002442B3 /* ITManagedObjectContext.m */,
-				3F96EE641C318D2A002442B3 /* ITManagedObject.h */,
-				3F96EE651C318D2A002442B3 /* ITManagedObject.m */,
+				3F96EE4B1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h */,
+				3F96EE4C1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -172,6 +161,8 @@
 			children = (
 				3F96EE801C34021E002442B3 /* NSManagedObject+Additions.h */,
 				3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */,
+				3F96EE841C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h */,
+				3F96EE851C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -183,10 +174,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F96EE661C318D2A002442B3 /* ITManagedObject.h in Headers */,
-				3F96EE621C317025002442B3 /* ITManagedObjectContext.h in Headers */,
 				3F96EE821C34021E002442B3 /* NSManagedObject+Additions.h in Headers */,
-				3F96EE4D1C2C3AF9002442B3 /* ITDatabaseManager.h in Headers */,
+				3F96EE861C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h in Headers */,
+				3F96EE4D1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h in Headers */,
 				3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,10 +279,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F96EE671C318D2A002442B3 /* ITManagedObject.m in Sources */,
 				3F96EE831C34021E002442B3 /* NSManagedObject+Additions.m in Sources */,
-				3F96EE4E1C2C3AF9002442B3 /* ITDatabaseManager.m in Sources */,
-				3F96EE631C317025002442B3 /* ITManagedObjectContext.m in Sources */,
+				3F96EE871C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m in Sources */,
+				3F96EE4E1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +293,6 @@
 				3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */,
 				3F96EE7B1C33F1AE002442B3 /* CoreDataStackTestCase.m in Sources */,
 				3F96EE7E1C33FEB4002442B3 /* BackgroundContextTests.m in Sources */,
-				3F96EE781C33F11E002442B3 /* MainContextExeptionsTests.m in Sources */,
 				3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
