@@ -42,7 +42,8 @@
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     
     NSURL *storeURL = [[ITDatabaseOperationsQueue applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
-    BOOL exists = [self persistentStoreExistsAtURL:storeURL];
+    NSError *existError;
+    BOOL exists = [self persistentStoreExistsAtURL:storeURL error:&existError];
     if (exists) {
         BOOL compatible = [self isModel:model compatibleWithPersistentStoreAtURL:storeURL storeType:storeType];
         if (!compatible) {
@@ -65,16 +66,17 @@
 
 #pragma mark - Helpers
 
-- (BOOL)persistentStoreExistsAtURL:(NSURL *)url
+- (BOOL)persistentStoreExistsAtURL:(NSURL *)url error:(NSError**)error
 {
-    NSError *error;
-    BOOL resourceIsReachable = [url checkResourceIsReachableAndReturnError:&error];
+    BOOL resourceIsReachable = [url checkResourceIsReachableAndReturnError:error];
     return resourceIsReachable;
 }
 
 - (BOOL)isModel:(NSManagedObjectModel *)model compatibleWithPersistentStoreAtURL:(NSURL *)url storeType:(NSString*)storeType
 {
-    if (![self persistentStoreExistsAtURL:url]) {
+    NSError *existError;
+    BOOL exist = [self persistentStoreExistsAtURL:url error:&existError];
+    if (!exist || existError) {
         return NO;
     }
     
