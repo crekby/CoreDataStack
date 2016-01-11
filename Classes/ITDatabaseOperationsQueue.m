@@ -7,6 +7,7 @@
 //
 
 #import "ITDatabaseOperationsQueue.h"
+#import "ITDatabaseOperationsQueue+Logging.h"
 #import <CoreData/CoreData.h>
 
 @interface ITDatabaseOperationsQueue()
@@ -68,6 +69,7 @@
         operation(self.changesContext);
         NSError *error;
         [self.changesContext save:&error];
+        [self logError:error];
     }];
 }
 
@@ -100,6 +102,7 @@
         }
         
         if (error) {
+            [self logError:error];
             mainThreadOperationBlock(error, nil);
             return;
         } else {
@@ -114,7 +117,7 @@
                     request.includesSubentities = NO;
                     NSError *error;
                     NSArray *result = [mainThreadContext executeFetchRequest:request error:&error];
-                    
+                    [self logError:error];
                     mainThreadOperationBlock(error, result);
                 }];
             } else {
@@ -140,6 +143,7 @@
     controller.delegate = delegate;
     NSError *error;
     if (![controller performFetch:&error]) {
+        [self logError:error];
         return nil;
     }
     return controller;
@@ -163,6 +167,7 @@
             NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityDescription.name];
             NSError *error;
             NSArray *results = [self.changesContext executeFetchRequest:request error:&error];
+            [self logError:error];
             if (!error) {
                 for (NSManagedObject *object in results) {
                     [self.changesContext deleteObject:object];
@@ -171,6 +176,7 @@
         }];
         NSError *error;
         [self.changesContext save:&error];
+        [self logError:error];
         if (completion) {
             completion(error);
         }
@@ -192,7 +198,9 @@
             NSArray* updated = [notification.userInfo valueForKey:NSUpdatedObjectsKey];
             // Fault all objects that will be updated.
             for (NSManagedObject* obj in updated) {
-                NSManagedObject* mainThreadObject = [self.readOnlyContext existingObjectWithID:obj.objectID error:nil];
+                NSError *error;
+                NSManagedObject* mainThreadObject = [self.readOnlyContext existingObjectWithID:obj.objectID error:&error];
+                [self logError:error];
                 [mainThreadObject willAccessValueForKey:nil];
             }
             

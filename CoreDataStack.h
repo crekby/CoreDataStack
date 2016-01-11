@@ -9,4 +9,5 @@
 #import "ITDatabaseOperationsQueue.h"
 #import "ITDatabaseOperationsQueue+Init.h"
 #import "NSManagedObject+Additions.h"
+#import "ITDatabaseOperationsQueue+Logging.h"
 

@@ -22,6 +22,8 @@
 		3F96EE831C34021E002442B3 /* NSManagedObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */; };
 		3F96EE861C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F96EE841C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h */; };
 		3F96EE871C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F96EE851C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m */; };
+		3FB131C41C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FB131C21C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.h */; };
+		3FB131C51C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB131C31C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+Additions.m"; path = "Classes/Categories/NSManagedObject+Additions.m"; sourceTree = SOURCE_ROOT; };
 		3F96EE841C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ITDatabaseOperationsQueue+Init.h"; path = "Classes/Categories/ITDatabaseOperationsQueue+Init.h"; sourceTree = SOURCE_ROOT; };
 		3F96EE851C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ITDatabaseOperationsQueue+Init.m"; path = "Classes/Categories/ITDatabaseOperationsQueue+Init.m"; sourceTree = SOURCE_ROOT; };
+		3FB131C21C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ITDatabaseOperationsQueue+Logging.h"; path = "Classes/Categories/ITDatabaseOperationsQueue+Logging.h"; sourceTree = SOURCE_ROOT; };
+		3FB131C31C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ITDatabaseOperationsQueue+Logging.m"; path = "Classes/Categories/ITDatabaseOperationsQueue+Logging.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 				3F96EE811C34021E002442B3 /* NSManagedObject+Additions.m */,
 				3F96EE841C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h */,
 				3F96EE851C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m */,
+				3FB131C21C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.h */,
+				3FB131C31C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -176,6 +182,7 @@
 			files = (
 				3F96EE821C34021E002442B3 /* NSManagedObject+Additions.h in Headers */,
 				3F96EE861C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.h in Headers */,
+				3FB131C41C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.h in Headers */,
 				3F96EE4D1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.h in Headers */,
 				3F96EE491C2C3AEA002442B3 /* CoreDataStack.h in Headers */,
 			);
@@ -282,6 +289,7 @@
 				3F96EE831C34021E002442B3 /* NSManagedObject+Additions.m in Sources */,
 				3F96EE871C3A6EE0002442B3 /* ITDatabaseOperationsQueue+Init.m in Sources */,
 				3F96EE4E1C2C3AF9002442B3 /* ITDatabaseOperationsQueue.m in Sources */,
+				3FB131C51C43DC6E0056E4DB /* ITDatabaseOperationsQueue+Logging.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

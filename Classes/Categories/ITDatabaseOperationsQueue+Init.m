@@ -7,6 +7,7 @@
 //
 
 #import "ITDatabaseOperationsQueue+Init.h"
+#import "ITDatabaseOperationsQueue+Logging.h"
 
 @implementation ITDatabaseOperationsQueue(Init)
 
@@ -46,6 +47,7 @@
     BOOL exists = [self persistentStoreExistsAtURL:storeURL error:&existError];
     
     if (existError) {
+        [self logError:existError];
         return nil;
     }
     
@@ -65,7 +67,7 @@
                                                             URL:storeURL
                                                         options:storeOptions
                                                           error:&error];
-    
+    [self logError:error];
     return persistentStoreCoordinator;
 }
 
@@ -81,6 +83,7 @@
 {
     NSError *existError;
     BOOL exist = [self persistentStoreExistsAtURL:url error:&existError];
+    [self logError:existError];
     if (!exist || existError) {
         return NO;
     }
@@ -91,6 +94,7 @@
                                                                                       error:&error];
     
     if (error) {
+        [self logError:error];
         return NO;
     }
     
