@@ -57,8 +57,8 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 #pragma mark - Public Methods
 
 /**
- Executes given block in main trhead. 
- @warning DO NOT USE MAIN THREAD CONTEXT FOR CHANGES, USE IT ONLY FOR FETCHING.
+ Executes given block in read only context.
+ @warning DO NOT USE READ ONLY CONTEXT FOR CHANGES, USE IT ONLY FOR FETCHING.
  @param backgroundOperation Block for execution.
  */
 - (void)executeReadOnlyOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
@@ -71,7 +71,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
 - (void)executeOperation:(void (^)(NSManagedObjectContext *context))backgroundOperation;
 
 /**
- Executes given blocks in background and in main context respectively. Background block should return fetched data or nil.
+ Executes given blocks in background and in read only contexts respectively. Background block should return fetched data or nil.
  @param backgroundOperation Block for background context execution, use it to fetching and changing your data. return your results from this block.
  @param mainThreadOperation Block for mainThread context execution, result from backgroun operation sending to this block from main context.
  */
