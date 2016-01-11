@@ -40,14 +40,21 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  */
 + (NSURL *)applicationDocumentsDirectory;
 
+#pragma mark - Inits
+
 /**
  */
 - (instancetype)init NS_UNAVAILABLE;
 
 /**
-
+ Returns initialised database operations queue with given contexts and model. If you don't want to initialise contexts by yourself, you can use method initWithModel:storeName:storeType: declared in Init category
+ @param model core data model
+ @param context context with allowed changes
+ @param readOnlyContext context only for read only operations
  */
 - (instancetype)initWithModel:(NSManagedObjectModel*)model managedObjectContext:(NSManagedObjectContext*)context readOnlyManagedObjectContext:(NSManagedObjectContext*)readOnlyContext NS_DESIGNATED_INITIALIZER;
+
+#pragma mark - Public Methods
 
 /**
  Executes given block in main trhead. 
