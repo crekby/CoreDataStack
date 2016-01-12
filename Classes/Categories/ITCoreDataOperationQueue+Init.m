@@ -1,16 +1,17 @@
 //
-//  ITDatabaseOperationsQueue+Additions.m
+//  ITCoreDataOperationQueue+Additions.m
 //  CoreDataStack
 //
 //  Created by Aliaksandr Skulin on 1/4/16.
 //  Copyright © 2016 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue+Init.h"
+#import "ITCoreDataOperationQueue+Init.h"
+#import "ITCoreDataOperationQueue+Logging.h"
 
-@implementation ITDatabaseOperationsQueue(Init)
+@implementation ITCoreDataOperationQueue(Init)
 
-+ (instancetype)operationQueueWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType
++ (instancetype)newOperationQueueWithModel:(NSManagedObjectModel *)model storeName:(NSString *)storeName storeType:(NSString *)storeType
 {
     return [[self alloc] initWithModel:model storeName:storeName storeType:storeType];
 }
@@ -21,7 +22,7 @@
     NSParameterAssert(storeName);
     NSParameterAssert(storeType);
     
-    NSPersistentStoreCoordinator *storeCoordinator = [self persistenceStoreCoordinatorWithModel:model storeType:storeType storeName:storeName];
+    NSPersistentStoreCoordinator *storeCoordinator = [self newPersistenceStoreCoordinatorWithModel:model storeType:storeType storeName:storeName];
     
     NSManagedObjectContext *backgroundManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [backgroundManagedObjectContext setMergePolicy:NSMergeByPropertyObjectTrumpMergePolicy];
@@ -37,16 +38,22 @@
     return self;
 }
 
-- (NSPersistentStoreCoordinator*)persistenceStoreCoordinatorWithModel:(NSManagedObjectModel*)model storeType:(NSString*)storeType storeName:(NSString*)storeName
+- (NSPersistentStoreCoordinator *)newPersistenceStoreCoordinatorWithModel:(NSManagedObjectModel *)model storeType:(NSString *)storeType storeName:(NSString *)storeName
 {
     NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     
-    NSURL *storeURL = [[ITDatabaseOperationsQueue applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
-    BOOL exists = [self persistentStoreExistsAtURL:storeURL];
+    NSURL *storeURL = [[ITCoreDataOperationQueue applicationDocumentsDirectory] URLByAppendingPathComponent:storeName];
+    NSError *existError;
+    BOOL exists = [self persistentStoreExistsAtURL:storeURL error:&existError];
+    
+    if (existError) {
+        [self logError:existError];
+    }
+    
     if (exists) {
         BOOL compatible = [self isModel:model compatibleWithPersistentStoreAtURL:storeURL storeType:storeType];
         if (!compatible) {
-            return nil;
+            [self logWarning:@"Migration Needed"];
         }
     }
     
@@ -59,22 +66,24 @@
                                                             URL:storeURL
                                                         options:storeOptions
                                                           error:&error];
-    
+    [self logError:error];
     return persistentStoreCoordinator;
 }
 
 #pragma mark - Helpers
 
-- (BOOL)persistentStoreExistsAtURL:(NSURL *)url
+- (BOOL)persistentStoreExistsAtURL:(NSURL *)url error:(NSError *__autoreleasing *)error
 {
-    NSError *error;
-    BOOL resourceIsReachable = [url checkResourceIsReachableAndReturnError:&error];
+    BOOL resourceIsReachable = [url checkResourceIsReachableAndReturnError:error];
     return resourceIsReachable;
 }
 
 - (BOOL)isModel:(NSManagedObjectModel *)model compatibleWithPersistentStoreAtURL:(NSURL *)url storeType:(NSString*)storeType
 {
-    if (![self persistentStoreExistsAtURL:url]) {
+    NSError *existError;
+    BOOL exist = [self persistentStoreExistsAtURL:url error:&existError];
+    [self logError:existError];
+    if (!exist || existError) {
         return NO;
     }
     
@@ -84,6 +93,7 @@
                                                                                       error:&error];
     
     if (error) {
+        [self logError:error];
         return NO;
     }
     
@@ -96,3 +106,4 @@
 }
 
 @end
+

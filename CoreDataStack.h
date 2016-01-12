@@ -6,7 +6,10 @@
 //  Copyright © 2015 Aliaksandr Skulin. All rights reserved.
 //
 
-#import "ITDatabaseOperationsQueue.h"
-#import "ITDatabaseOperationsQueue+Init.h"
 #import "NSManagedObject+Additions.h"
+#import "ITCoreDataOperationQueue.h"
+#import "ITCoreDataOperationQueue+Init.h"
+#import "ITCoreDataOperationQueue+Logging.h"
+#import "ITCoreDataOperationQueue+Clear.h"
+#import "ITCoreDataOperationQueue+NSFRC.h"
 
