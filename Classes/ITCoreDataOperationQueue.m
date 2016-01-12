@@ -33,6 +33,7 @@
     if (self) {
         _readOnlyContext = readOnlyContext;
         _changesContext = context;
+        _model = model;
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(contextDidSave:)
                                                      name:NSManagedObjectContextDidSaveNotification
