@@ -10,6 +10,7 @@
 
 @interface NSManagedObject(Additions)
 
-+(nullable __kindof NSManagedObject *) insertObjectInManagedObjectContext:(nonnull NSManagedObjectContext *)context;
++(nullable NSManagedObject *) insertObjectInManagedObjectContext:(nonnull NSManagedObjectContext *)context;
 
 @end
+

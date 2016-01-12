@@ -24,7 +24,7 @@ static NSString *kITTestEntityName = @"TestEntity";
     [self.databaseQueue executeOperation:^NSArray *(NSManagedObjectContext *context) {
         TestEntity *object = [TestEntity insertObjectInManagedObjectContext:context];
         return @[object];
-    } readOnlyOperation:^(NSError *error, NSArray *result) {
+    } mainThreadOperation:^(NSError *error, NSArray *result) {
         XCTAssertNil(error);
         TestEntity *object = result.firstObject;
         XCTAssertNotNil(object);

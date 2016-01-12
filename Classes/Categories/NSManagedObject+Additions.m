@@ -12,9 +12,11 @@
 
 +(nullable __kindof NSManagedObject *) insertObjectInManagedObjectContext:(NSManagedObjectContext *)context
 {
+    NSParameterAssert(context);
     NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self)
                                                             inManagedObjectContext:context];
     return object;
 }
 
 @end
+

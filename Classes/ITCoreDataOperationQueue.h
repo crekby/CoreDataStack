@@ -33,7 +33,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  Both contexts have same persistence store coordinator.
  And after saving changes in background context, they are merged to main context.
  */
-@interface ITDatabaseOperationsQueue : NSObject
+@interface ITCoreDataOperationQueue : NSObject
 
 /**
  URL to Documents directory in application sandbox.
@@ -61,7 +61,7 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  @warning DO NOT USE READ ONLY CONTEXT FOR CHANGES, USE IT ONLY FOR FETCHING.
  @param backgroundOperation Block for execution.
  */
-- (void)executeReadOnlyOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
+- (void)executeMainThreadOperation:(void (^)(NSManagedObjectContext *context))mainThreadOperation;
 
 /**
  Executes given block in background.
@@ -76,35 +76,6 @@ typedef void(^MainThreadOperationWithResultBlock)(NSError *error, NSArray *resul
  @param mainThreadOperation Block for mainThread context execution, result from backgroun operation sending to this block from main context.
  */
 - (void)executeOperation:(BackroundOperationWithResultBlock)backgroundOperation
-               readOnlyOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
-
-/**
- Returns fetch result controller with given properties. Executes in main context.
- @param request The fetch request used to get the objects..
- @param delegate delegate for fetch result controller.
- */
-- (NSFetchedResultsController*)controllerWithRequest:(NSFetchRequest *)request
-                                         andDelegate:(id <NSFetchedResultsControllerDelegate>)delegate;
-
-/**
- Returns fetch result controller with given properties. Executes in main context.
- @param request The fetch request used to get the objects..
- @param keyPath A key path on result objects that returns the section name. Pass nil to indicate that the controller should generate a single section.
- @param delegate delegate for fetch result controller.
- */
-- (NSFetchedResultsController *)controllerWithRequest:(NSFetchRequest *)request
-                                   sectionKeyPathName:(NSString *)keyPath
-                                             delegate:(id<NSFetchedResultsControllerDelegate>)delegate;
-
-/**
- Clear All entities from database in background context.
-*/
-- (void)clearAllEntities;
-
-/**
- Clear All entities from database in background context and wait until operation complete.
- */
-- (void)clearAllEntitiesAndWait;
-
+               mainThreadOperation:(MainThreadOperationWithResultBlock)mainThreadOperation;
 
 @end
