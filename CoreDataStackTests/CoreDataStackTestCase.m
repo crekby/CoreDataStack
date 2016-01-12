@@ -14,7 +14,7 @@
     [super setUp];
     NSString *storeName = NSStringFromSelector([self.invocation selector]);
     NSURL *modelURL = [[NSBundle bundleForClass:self.class] URLForResource:@"TestModel" withExtension:@"momd"];
-    self.databaseQueue = [[ITCoreDataOperationQueue alloc] initWithModel:[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] storeName:storeName storeType:NSInMemoryStoreType];
+    self.databaseQueue = [ITCoreDataOperationQueue newOperationQueueWithModel:[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] storeName:storeName storeType:NSInMemoryStoreType];
 }
 
 - (void)tearDown {

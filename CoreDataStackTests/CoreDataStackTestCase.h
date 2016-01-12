@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "CoreDataStack.h"
 #import <CoreData/CoreData.h>
+#import "TestEntity.h"
 
 @class ITCoreDataOperationQueue;
 

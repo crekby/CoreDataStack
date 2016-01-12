@@ -29,6 +29,8 @@
 		3FB131CD1C43F6E80056E4DB /* ITCoreDataOperationQueue+NSFRC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB131CB1C43F6E80056E4DB /* ITCoreDataOperationQueue+NSFRC.m */; };
 		3FB131D01C43F74B0056E4DB /* ITCoreDataOperationQueue+Clear.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FB131CE1C43F74B0056E4DB /* ITCoreDataOperationQueue+Clear.h */; };
 		3FB131D11C43F74B0056E4DB /* ITCoreDataOperationQueue+Clear.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB131CF1C43F74B0056E4DB /* ITCoreDataOperationQueue+Clear.m */; };
+		3FB132351C45392A0056E4DB /* FetchResultControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB132341C45392A0056E4DB /* FetchResultControllerTests.m */; };
+		3FB132371C453D9B0056E4DB /* ClearAllEntitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB132361C453D9B0056E4DB /* ClearAllEntitiesTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		3FB131CB1C43F6E80056E4DB /* ITCoreDataOperationQueue+NSFRC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ITCoreDataOperationQueue+NSFRC.m"; path = "Classes/Categories/ITCoreDataOperationQueue+NSFRC.m"; sourceTree = SOURCE_ROOT; };
 		3FB131CE1C43F74B0056E4DB /* ITCoreDataOperationQueue+Clear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ITCoreDataOperationQueue+Clear.h"; path = "Classes/Categories/ITCoreDataOperationQueue+Clear.h"; sourceTree = SOURCE_ROOT; };
 		3FB131CF1C43F74B0056E4DB /* ITCoreDataOperationQueue+Clear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ITCoreDataOperationQueue+Clear.m"; path = "Classes/Categories/ITCoreDataOperationQueue+Clear.m"; sourceTree = SOURCE_ROOT; };
+		3FB132341C45392A0056E4DB /* FetchResultControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchResultControllerTests.m; sourceTree = "<group>"; };
+		3FB132361C453D9B0056E4DB /* ClearAllEntitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearAllEntitiesTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,8 @@
 				3F96EE7C1C33F295002442B3 /* BaseClasses */,
 				3F96EE701C33C769002442B3 /* TestModel */,
 				3F96EE7D1C33FEB4002442B3 /* BackgroundContextTests.m */,
+				3FB132341C45392A0056E4DB /* FetchResultControllerTests.m */,
+				3FB132361C453D9B0056E4DB /* ClearAllEntitiesTests.m */,
 				3F91C1391C2C289E000801F1 /* Info.plist */,
 			);
 			path = CoreDataStackTests;
@@ -320,9 +326,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F96EE761C33C7D3002442B3 /* TestEntity.m in Sources */,
+				3FB132351C45392A0056E4DB /* FetchResultControllerTests.m in Sources */,
 				3F96EE751C33C7D3002442B3 /* TestEntity+CoreDataProperties.m in Sources */,
 				3F96EE7B1C33F1AE002442B3 /* CoreDataStackTestCase.m in Sources */,
 				3F96EE7E1C33FEB4002442B3 /* BackgroundContextTests.m in Sources */,
+				3FB132371C453D9B0056E4DB /* ClearAllEntitiesTests.m in Sources */,
 				3F96EE6F1C33C761002442B3 /* TestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
