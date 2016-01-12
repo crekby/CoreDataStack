@@ -22,4 +22,14 @@
     [super tearDown];
 }
 
+- (void)testThatInitSucessWithExistingStore
+{
+    NSString *storeName = NSStringFromSelector([self.invocation selector]);
+    NSURL *modelURL = [[NSBundle bundleForClass:self.class] URLForResource:@"TestModel" withExtension:@"momd"];
+    ITCoreDataOperationQueue *queue = [ITCoreDataOperationQueue newOperationQueueWithModel:[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] storeName:storeName storeType:NSSQLiteStoreType];
+    XCTAssert(queue);
+    ITCoreDataOperationQueue *secondQueue = [ITCoreDataOperationQueue newOperationQueueWithModel:[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] storeName:storeName storeType:NSSQLiteStoreType];
+    XCTAssert(secondQueue);
+}
+
 @end
