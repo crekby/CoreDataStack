@@ -18,12 +18,12 @@
 - (void)testThatAllEntitiesDeliting
 {
     XCTestExpectation *expectation = [self expectationWithDescription:@"first expectation"];
-    [self.databaseQueue executeOperation:^NSArray *(NSManagedObjectContext *context) {
+    [self.databaseQueue executeOperation:^(NSManagedObjectContext *context, BackgroundOperationCompletionBlock completion) {
         NSMutableArray *array = [NSMutableArray new];
         for (int i = 0; i < 10; i++) {
             [array addObject:[TestEntity insertObjectInManagedObjectContext:context]];
         }
-        return array;
+        completion(array);
     } mainThreadOperation:^(NSError *error, NSArray *result) {
         XCTAssert(result.count == 10);
         [self.databaseQueue clearAllEntitiesWithCompletion:^(NSError *error) {

@@ -21,9 +21,9 @@ static NSString *kITTestEntityName = @"TestEntity";
 - (void)testThatBackroundContextReturnObjectInMainContext
 {
     XCTestExpectation* expectation = [self expectationWithDescription:@"Wait expectation"];
-    [self.databaseQueue executeOperation:^NSArray *(NSManagedObjectContext *context) {
+    [self.databaseQueue executeOperation:^(NSManagedObjectContext *context, BackgroundOperationCompletionBlock completion) {
         TestEntity *object = [TestEntity insertObjectInManagedObjectContext:context];
-        return @[object];
+        completion(@[object]);
     } mainThreadOperation:^(NSError *error, NSArray *result) {
         XCTAssertNil(error);
         TestEntity *object = result.firstObject;
