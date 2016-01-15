@@ -12,11 +12,16 @@
 @class ITManagedObjectContext;
 
 /**
+ Completion block for background operation
+ @param result result array from backround operation executing
+*/
+typedef void(^BackgroundOperationCompletionBlock)(NSArray *result);
+
+/**
  Block for executing from background context.
  @param context background context.
- @return fetch result array or nil.
  */
-typedef NSArray*(^BackroundOperationWithResultBlock)(NSManagedObjectContext *context);
+typedef void(^BackroundOperationWithResultBlock)(NSManagedObjectContext *context, BackgroundOperationCompletionBlock completion);
 
 /**
  Block for executing from main context.

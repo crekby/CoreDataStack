@@ -96,7 +96,9 @@
     
     [self executeOperation:^(NSManagedObjectContext *backgroundContext) {
         
-        result = backgroundOperation(backgroundContext);
+        backgroundOperation(backgroundContext, ^(NSArray *resultArray){
+            result = resultArray;
+        });
         
         NSError *error;
         
